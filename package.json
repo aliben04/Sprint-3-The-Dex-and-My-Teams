@@ -5,9 +5,24 @@
   "private": true,
   "scripts": {
     "dev": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
-    "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify"
+    "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify",
+    "api": "json-server --watch db.json --port 3000"
   },
   "devDependencies": {
+    "json-server": "^0.17.4",
     "tailwindcss": "3.4.19"
-  }
+  },
+  "main": "data.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aliben04/Sprint-3-The-Dex-and-My-Teams.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/aliben04/Sprint-3-The-Dex-and-My-Teams/issues"
+  },
+  "homepage": "https://github.com/aliben04/Sprint-3-The-Dex-and-My-Teams#readme"
 }
