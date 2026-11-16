@@ -2,364 +2,364 @@
 {
   "creatures": [
     {
-      "id": "0",
-      "name": "Bulbizarre",
-      "type": "Plante",
+      "id": "1",
+      "name": "Bulbasaur",
+      "type": "Grass",
       "level": "Base",
       "stats": { "hp": 45, "attack": 49, "defence": 49 },
       "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-      "description": "Un Pokémon Plante qui porte une graine sur son dos."
-    },
-    {
-      "id": "1",
-      "name": "Herbizarre",
-      "type": "Plante",
-      "level": "Évolution",
-      "stats": { "hp": 60, "attack": 62, "defence": 63 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png",
-      "description": "La graine sur son dos grandit en absorbant la lumière."
+      "description": "A Grass-type Pokémon with a seed growing on its back."
     },
     {
       "id": "2",
-      "name": "Florizarre",
-      "type": "Plante",
-      "level": "Évolution",
-      "stats": { "hp": 80, "attack": 82, "defence": 83 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png",
-      "description": "Une grande fleur pousse sur son dos."
+      "name": "Ivysaur",
+      "type": "Grass",
+      "level": "Evolution",
+      "stats": { "hp": 60, "attack": 62, "defence": 63 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png",
+      "description": "The seed on its back grows by absorbing sunlight."
     },
     {
       "id": "3",
-      "name": "Salamèche",
-      "type": "Feu",
-      "level": "Base",
-      "stats": { "hp": 39, "attack": 52, "defence": 43 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
-      "description": "La flamme au bout de sa queue indique son énergie."
+      "name": "Venusaur",
+      "type": "Grass",
+      "level": "Evolution",
+      "stats": { "hp": 80, "attack": 82, "defence": 83 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png",
+      "description": "A large flower grows on its back and absorbs solar energy."
     },
     {
       "id": "4",
-      "name": "Reptincel",
-      "type": "Feu",
-      "level": "Évolution",
-      "stats": { "hp": 58, "attack": 64, "defence": 58 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/5.png",
-      "description": "Un Pokémon Feu qui possède un tempérament combatif."
+      "name": "Charmander",
+      "type": "Fire",
+      "level": "Base",
+      "stats": { "hp": 39, "attack": 52, "defence": 43 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+      "description": "The flame on its tail shows its life energy."
     },
     {
       "id": "5",
-      "name": "Dracaufeu",
-      "type": "Feu",
-      "level": "Évolution",
-      "stats": { "hp": 78, "attack": 84, "defence": 78 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png",
-      "description": "Un puissant Pokémon capable de voler dans le ciel."
+      "name": "Charmeleon",
+      "type": "Fire",
+      "level": "Evolution",
+      "stats": { "hp": 58, "attack": 64, "defence": 58 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/5.png",
+      "description": "A Fire-type Pokémon with a strong and competitive personality."
     },
     {
       "id": "6",
-      "name": "Carapuce",
-      "type": "Eau",
-      "level": "Base",
-      "stats": { "hp": 44, "attack": 48, "defence": 65 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
-      "description": "Un Pokémon Eau qui se protège avec sa carapace."
+      "name": "Charizard",
+      "type": "Fire",
+      "level": "Evolution",
+      "stats": { "hp": 78, "attack": 84, "defence": 78 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png",
+      "description": "A powerful Pokémon that can fly high in the sky."
     },
     {
       "id": "7",
-      "name": "Carabaffe",
-      "type": "Eau",
-      "level": "Évolution",
-      "stats": { "hp": 59, "attack": 63, "defence": 80 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/8.png",
-      "description": "Sa queue touffue lui permet de garder son équilibre."
+      "name": "Squirtle",
+      "type": "Water",
+      "level": "Base",
+      "stats": { "hp": 44, "attack": 48, "defence": 65 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
+      "description": "A Water-type Pokémon that protects itself with its shell."
     },
     {
       "id": "8",
-      "name": "Tortank",
-      "type": "Eau",
-      "level": "Évolution",
-      "stats": { "hp": 79, "attack": 83, "defence": 100 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/9.png",
-      "description": "Il utilise ses canons pour projeter de puissants jets d'eau."
+      "name": "Wartortle",
+      "type": "Water",
+      "level": "Evolution",
+      "stats": { "hp": 59, "attack": 63, "defence": 80 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/8.png",
+      "description": "Its fluffy tail helps it maintain balance while swimming."
     },
     {
       "id": "9",
-      "name": "Chenipan",
-      "type": "Insecte",
-      "level": "Base",
-      "stats": { "hp": 45, "attack": 30, "defence": 35 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10.png",
-      "description": "Un petit Pokémon Insecte qui se nourrit de feuilles."
+      "name": "Blastoise",
+      "type": "Water",
+      "level": "Evolution",
+      "stats": { "hp": 79, "attack": 83, "defence": 100 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/9.png",
+      "description": "It uses powerful water cannons mounted on its shell."
     },
     {
       "id": "10",
-      "name": "Chrysacier",
-      "type": "Insecte",
-      "level": "Évolution",
-      "stats": { "hp": 50, "attack": 20, "defence": 55 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/11.png",
-      "description": "Il reste immobile dans son cocon pour évoluer."
+      "name": "Caterpie",
+      "type": "Bug",
+      "level": "Base",
+      "stats": { "hp": 45, "attack": 30, "defence": 35 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10.png",
+      "description": "A small Bug-type Pokémon that feeds on leaves."
     },
     {
       "id": "11",
-      "name": "Papilusion",
-      "type": "Insecte",
-      "level": "Évolution",
-      "stats": { "hp": 60, "attack": 45, "defence": 50 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/12.png",
-      "description": "Un Pokémon volant qui possède de grandes ailes."
+      "name": "Metapod",
+      "type": "Bug",
+      "level": "Evolution",
+      "stats": { "hp": 50, "attack": 20, "defence": 55 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/11.png",
+      "description": "It stays inside its shell while preparing to evolve."
     },
     {
       "id": "12",
-      "name": "Aspicot",
-      "type": "Insecte",
-      "level": "Base",
-      "stats": { "hp": 40, "attack": 35, "defence": 30 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/13.png",
-      "description": "Un petit Pokémon qui possède un aiguillon sur la tête."
+      "name": "Butterfree",
+      "type": "Bug",
+      "level": "Evolution",
+      "stats": { "hp": 60, "attack": 45, "defence": 50 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/12.png",
+      "description": "A flying Pokémon with large wings covered in scales."
     },
     {
       "id": "13",
-      "name": "Coconfort",
-      "type": "Insecte",
-      "level": "Évolution",
-      "stats": { "hp": 45, "attack": 25, "defence": 50 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/14.png",
-      "description": "Il attend tranquillement sa prochaine évolution."
+      "name": "Weedle",
+      "type": "Bug",
+      "level": "Base",
+      "stats": { "hp": 40, "attack": 35, "defence": 30 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/13.png",
+      "description": "A small Pokémon with a sharp horn on its head."
     },
     {
       "id": "14",
-      "name": "Dardargnan",
-      "type": "Insecte",
-      "level": "Évolution",
-      "stats": { "hp": 65, "attack": 90, "defence": 40 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/15.png",
-      "description": "Un Pokémon Insecte rapide équipé de deux aiguillons."
+      "name": "Kakuna",
+      "type": "Bug",
+      "level": "Evolution",
+      "stats": { "hp": 45, "attack": 25, "defence": 50 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/14.png",
+      "description": "It remains still inside its shell while evolving."
     },
     {
       "id": "15",
-      "name": "Roucool",
-      "type": "Vol",
-      "level": "Base",
-      "stats": { "hp": 40, "attack": 45, "defence": 40 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/16.png",
-      "description": "Un petit Pokémon oiseau très répandu."
+      "name": "Beedrill",
+      "type": "Bug",
+      "level": "Evolution",
+      "stats": { "hp": 65, "attack": 90, "defence": 40 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/15.png",
+      "description": "A fast Pokémon with two sharp stingers."
     },
     {
       "id": "16",
-      "name": "Roucoups",
-      "type": "Vol",
-      "level": "Évolution",
-      "stats": { "hp": 63, "attack": 60, "defence": 55 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/17.png",
-      "description": "Il surveille son territoire depuis le ciel."
+      "name": "Pidgey",
+      "type": "Flying",
+      "level": "Base",
+      "stats": { "hp": 40, "attack": 45, "defence": 40 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/16.png",
+      "description": "A small bird Pokémon commonly found in forests."
     },
     {
       "id": "17",
-      "name": "Roucarnage",
-      "type": "Vol",
-      "level": "Évolution",
-      "stats": { "hp": 83, "attack": 80, "defence": 75 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/18.png",
-      "description": "Un Pokémon oiseau majestueux et très rapide."
+      "name": "Pidgeotto",
+      "type": "Flying",
+      "level": "Evolution",
+      "stats": { "hp": 63, "attack": 60, "defence": 55 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/17.png",
+      "description": "It watches its territory from high in the sky."
     },
     {
       "id": "18",
+      "name": "Pidgeot",
+      "type": "Flying",
+      "level": "Evolution",
+      "stats": { "hp": 83, "attack": 80, "defence": 75 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/18.png",
+      "description": "A majestic bird Pokémon known for its incredible speed."
+    },
+    {
+      "id": "19",
       "name": "Rattata",
       "type": "Normal",
       "level": "Base",
       "stats": { "hp": 30, "attack": 56, "defence": 35 },
       "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/19.png",
-      "description": "Un petit Pokémon rapide qui possède de grandes dents."
-    },
-    {
-      "id": "19",
-      "name": "Rattatac",
-      "type": "Normal",
-      "level": "Évolution",
-      "stats": { "hp": 55, "attack": 81, "defence": 60 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/20.png",
-      "description": "Il utilise ses dents puissantes pour se défendre."
+      "description": "A small and quick Pokémon with strong front teeth."
     },
     {
       "id": "20",
-      "name": "Piafabec",
-      "type": "Vol",
-      "level": "Base",
-      "stats": { "hp": 40, "attack": 60, "defence": 30 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/21.png",
-      "description": "Un Pokémon oiseau qui vole rapidement."
+      "name": "Raticate",
+      "type": "Normal",
+      "level": "Evolution",
+      "stats": { "hp": 55, "attack": 81, "defence": 60 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/20.png",
+      "description": "It uses its powerful teeth to chew through hard objects."
     },
     {
       "id": "21",
-      "name": "Rapasdepic",
-      "type": "Vol",
-      "level": "Évolution",
-      "stats": { "hp": 65, "attack": 90, "defence": 65 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/22.png",
-      "description": "Il possède un long bec et de grandes ailes."
+      "name": "Spearow",
+      "type": "Flying",
+      "level": "Base",
+      "stats": { "hp": 40, "attack": 60, "defence": 30 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/21.png",
+      "description": "A small bird Pokémon that flies quickly."
     },
     {
       "id": "22",
-      "name": "Abo",
+      "name": "Fearow",
+      "type": "Flying",
+      "level": "Evolution",
+      "stats": { "hp": 65, "attack": 90, "defence": 65 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/50.png",
+      "description": "A large bird Pokémon with a long beak and wide wings."
+    },
+    {
+      "id": "23",
+      "name": "Ekans",
       "type": "Poison",
       "level": "Base",
       "stats": { "hp": 35, "attack": 60, "defence": 44 },
       "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/23.png",
-      "description": "Un Pokémon serpent qui se déplace silencieusement."
-    },
-    {
-      "id": "23",
-      "name": "Arbok",
-      "type": "Poison",
-      "level": "Évolution",
-      "stats": { "hp": 60, "attack": 95, "defence": 69 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/24.png",
-      "description": "Un serpent puissant reconnaissable à ses motifs."
+      "description": "A snake Pokémon that moves quietly through the grass."
     },
     {
       "id": "24",
-      "name": "Pikachu",
-      "type": "Électrik",
-      "level": "Base",
-      "stats": { "hp": 35, "attack": 55, "defence": 40 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
-      "description": "Un Pokémon électrique qui stocke de l'énergie dans ses joues."
+      "name": "Arbok",
+      "type": "Poison",
+      "level": "Evolution",
+      "stats": { "hp": 60, "attack": 95, "defence": 69 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/24.png",
+      "description": "A powerful snake Pokémon with distinctive patterns."
     },
     {
       "id": "25",
-      "name": "Raichu",
-      "type": "Électrik",
-      "level": "Évolution",
-      "stats": { "hp": 60, "attack": 90, "defence": 55 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/26.png",
-      "description": "Il libère de puissantes décharges électriques."
+      "name": "Pikachu",
+      "type": "Electric",
+      "level": "Base",
+      "stats": { "hp": 35, "attack": 55, "defence": 40 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+      "description": "An Electric-type Pokémon that stores energy in its cheeks."
     },
     {
       "id": "26",
-      "name": "Sabelette",
-      "type": "Sol",
-      "level": "Base",
-      "stats": { "hp": 50, "attack": 75, "defence": 85 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/27.png",
-      "description": "Un Pokémon qui creuse des tunnels dans le sol."
+      "name": "Raichu",
+      "type": "Electric",
+      "level": "Evolution",
+      "stats": { "hp": 60, "attack": 90, "defence": 55 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/26.png",
+      "description": "It can release powerful electrical energy."
     },
     {
       "id": "27",
-      "name": "Sablaireau",
-      "type": "Sol",
-      "level": "Évolution",
-      "stats": { "hp": 75, "attack": 100, "defence": 110 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/28.png",
-      "description": "Il possède des griffes puissantes pour creuser."
+      "name": "Sandshrew",
+      "type": "Ground",
+      "level": "Base",
+      "stats": { "hp": 50, "attack": 75, "defence": 85 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/27.png",
+      "description": "A Pokémon that digs tunnels underground."
     },
     {
       "id": "28",
-      "name": "Nidoran♀",
+      "name": "Sandslash",
+      "type": "Ground",
+      "level": "Evolution",
+      "stats": { "hp": 75, "attack": 100, "defence": 110 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/28.png",
+      "description": "It has strong claws that help it dig through the ground."
+    },
+    {
+      "id": "29",
+      "name": "Nidoran Female",
       "type": "Poison",
       "level": "Base",
       "stats": { "hp": 55, "attack": 47, "defence": 52 },
       "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/29.png",
-      "description": "Un petit Pokémon qui possède des oreilles très sensibles."
-    },
-    {
-      "id": "29",
-      "name": "Nidorina",
-      "type": "Poison",
-      "level": "Évolution",
-      "stats": { "hp": 70, "attack": 62, "defence": 67 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/30.png",
-      "description": "Un Pokémon prudent qui protège ses proches."
+      "description": "A small Pokémon with very sensitive ears."
     },
     {
       "id": "30",
-      "name": "Nidoqueen",
+      "name": "Nidorina",
       "type": "Poison",
-      "level": "Évolution",
-      "stats": { "hp": 90, "attack": 92, "defence": 87 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/31.png",
-      "description": "Un Pokémon robuste avec une défense impressionnante."
+      "level": "Evolution",
+      "stats": { "hp": 70, "attack": 62, "defence": 67 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/30.png",
+      "description": "A careful Pokémon that protects those close to it."
     },
     {
       "id": "31",
-      "name": "Nidoran♂",
+      "name": "Nidoqueen",
+      "type": "Poison",
+      "level": "Evolution",
+      "stats": { "hp": 90, "attack": 92, "defence": 87 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/31.png",
+      "description": "A strong Pokémon with impressive defensive abilities."
+    },
+    {
+      "id": "32",
+      "name": "Nidoran Male",
       "type": "Poison",
       "level": "Base",
       "stats": { "hp": 46, "attack": 57, "defence": 40 },
       "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/32.png",
-      "description": "Un petit Pokémon qui utilise ses oreilles pour détecter les sons."
-    },
-    {
-      "id": "32",
-      "name": "Nidorino",
-      "type": "Poison",
-      "level": "Évolution",
-      "stats": { "hp": 61, "attack": 72, "defence": 57 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/33.png",
-      "description": "Il possède une corne solide sur la tête."
+      "description": "A small Pokémon that uses its ears to detect sounds."
     },
     {
       "id": "33",
-      "name": "Nidoking",
+      "name": "Nidorino",
       "type": "Poison",
-      "level": "Évolution",
-      "stats": { "hp": 81, "attack": 102, "defence": 77 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/34.png",
-      "description": "Un Pokémon puissant avec une grande force physique."
+      "level": "Evolution",
+      "stats": { "hp": 61, "attack": 72, "defence": 57 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/33.png",
+      "description": "It has a strong horn on its head."
     },
     {
       "id": "34",
-      "name": "Mélofée",
-      "type": "Fée",
-      "level": "Base",
-      "stats": { "hp": 70, "attack": 45, "defence": 48 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/35.png",
-      "description": "Un Pokémon mystérieux qui aime observer la lune."
+      "name": "Nidoking",
+      "type": "Poison",
+      "level": "Evolution",
+      "stats": { "hp": 81, "attack": 102, "defence": 77 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/34.png",
+      "description": "A powerful Pokémon known for its great physical strength."
     },
     {
       "id": "35",
-      "name": "Mélodelfe",
-      "type": "Fée",
-      "level": "Évolution",
-      "stats": { "hp": 95, "attack": 70, "defence": 73 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/36.png",
-      "description": "Un Pokémon discret qui possède des pouvoirs féeriques."
+      "name": "Clefairy",
+      "type": "Fairy",
+      "level": "Base",
+      "stats": { "hp": 70, "attack": 45, "defence": 48 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/35.png",
+      "description": "A mysterious Pokémon that loves watching the moon."
     },
     {
       "id": "36",
-      "name": "Goupix",
-      "type": "Feu",
-      "level": "Base",
-      "stats": { "hp": 38, "attack": 41, "defence": 40 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/37.png",
-      "description": "Un petit Pokémon renard qui possède six queues."
+      "name": "Clefable",
+      "type": "Fairy",
+      "level": "Evolution",
+      "stats": { "hp": 95, "attack": 70, "defence": 73 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/36.png",
+      "description": "A shy Pokémon with magical fairy powers."
     },
     {
       "id": "37",
-      "name": "Feunard",
-      "type": "Feu",
-      "level": "Évolution",
-      "stats": { "hp": 73, "attack": 76, "defence": 75 },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/38.png",
-      "description": "Un élégant Pokémon renard aux neuf queues."
+      "name": "Vulpix",
+      "type": "Fire",
+      "level": "Base",
+      "stats": { "hp": 38, "attack": 41, "defence": 40 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/37.png",
+      "description": "A small fox Pokémon with six beautiful tails."
     },
     {
       "id": "38",
-      "name": "Rondoudou",
+      "name": "Ninetales",
+      "type": "Fire",
+      "level": "Evolution",
+      "stats": { "hp": 73, "attack": 76, "defence": 75 },
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/38.png",
+      "description": "An elegant fox Pokémon with nine tails."
+    },
+    {
+      "id": "39",
+      "name": "Jigglypuff",
       "type": "Normal",
       "level": "Base",
       "stats": { "hp": 115, "attack": 45, "defence": 20 },
       "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/39.png",
-      "description": "Un Pokémon qui chante pour endormir son public."
+      "description": "A Pokémon that sings a soothing song to make others sleep."
     },
     {
-      "id": "39",
-      "name": "Grodoudou",
+      "id": "40",
+      "name": "Wigglytuff",
       "type": "Normal",
-      "level": "Évolution",
+      "level": "Evolution",
       "stats": { "hp": 140, "attack": 70, "defence": 45 },
       "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/40.png",
-      "description": "Un Pokémon doux qui possède une voix mélodieuse."
+      "description": "A gentle Pokémon with a soft body and a beautiful singing voice."
     }
   ]
 }

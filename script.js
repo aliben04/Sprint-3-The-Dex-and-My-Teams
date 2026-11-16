@@ -28,22 +28,10 @@ let tem = teams;
 
 let idPokemonDetail = ""
 
-function afficherCard(cart) {
+export function afficherCard(cart) {
 
-    let typeShape = "";
-    
-    switch(cart.type){
-        case "Feu": typeShape+="bg-orange-500"; break;
-        case "Eau": typeShape+="bg-blue-500"; break;
-        case "Plante": typeShape+="bg-green-500"; break;
-        case "Électrik": typeShape+="bg-yellow-500 "; break;
-        case "Psy": typeShape+="bg-purple-500 "; break;
-        case "Fée": typeShape+="bg-pink-200 "; break;
-        case "Normal": typeShape+=" bg-black"; break;
-        case "Ténèbres": typeShape+="bg-purple-950"; break;
-        case "Combat": typeShape+="bg-yellow-950"; break;
-    }
-    
+    let typeShape = "bg-black";
+
 
     let article = document.createElement("article");
 
