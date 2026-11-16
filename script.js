@@ -277,11 +277,6 @@ let section=document.querySelector("#grid")
 let filters=document.querySelector("#filters")
 let detail=document.querySelector("#detail")
 
-
-
-creatures.forEach((p)=>{
-    afficherCard(p)
-})
       
 // -------------------------------------------------------------
 // 3. RECHERCHE

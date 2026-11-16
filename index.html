@@ -71,6 +71,9 @@ body.dark section {
     </section>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8  items-start">
+      <div id="loading" class="hidden justify-center items-center w-full col-span-full py-10 ">
+            <div class="border-4 border-black border-t-rose-50 rounded-full h-10 w-10 animate-spin"></div>
+      </div>
 
       <!-- ===================== GRILLE DES CRÉATURES ===================== -->
       <section id="grid" aria-label="Créatures" class="grid grid-cols-1 md:col-span-2  min-w-0 md:grid-cols-2 lg:grid-cols-3 gap-5 items-start">
@@ -101,6 +104,13 @@ body.dark section {
         </section>
 
       </aside>
+    </div>
+    <div class="flex justify-center items-center gap-4 my-6">
+        <button id="prev" class="btn-primary">Previous</button>
+
+        <span id="pageNumber">Page 1</span>
+
+        <button id="next" class="btn-primary">Next</button>
     </div>
 
     <!-- ===================== FORMULAIRE DE CRÉATION ===================== -->
@@ -167,5 +177,6 @@ body.dark section {
 
   
   <script  type="module" src="./script.js"></script>
+  <script type="module" src="src/ui.js"></script>
 </body>
 </html>
