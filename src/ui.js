@@ -7,7 +7,7 @@ import {  request } from "./service/api.js";
 
 export async function afficherPage(page) {
     afficherLoading()
-    
+   
     let pageNumber=document.querySelector("#pageNumber")
     pageNumber.textContent = `Page ${page}`;
     try {
@@ -101,4 +101,43 @@ export function checkColor(type) {
     }
 
     return typeShape;
+}
+let types = [
+    "tous",
+    "Normal",
+    "Fire",
+    "Water",
+    "Electric",
+    "Grass",
+    "Ice",
+    "Fighting",
+    "Poison",
+    "Ground",
+    "Flying",
+    "Psychic",
+    "Bug",
+    "Rock",
+    "Ghost",
+    "Dragon",
+    "Dark",
+    "Steel",
+    "Fairy"
+];
+export async function afficherFilter(){
+       
+    let filters=document.querySelector("#filters")
+    filters.innerHTML=""
+    types.forEach((t)=>{
+        
+        let button=document.createElement("button")
+        button.textContent=t;
+        button.className="btn chip shrink-0"
+        filters.appendChild(button)
+    })
+}
+export async function afficherFilterCards(list) {
+    document.querySelector("#grid").innerHTML = ""
+    list.forEach((p)=>{
+        afficherCard(p)
+    })
 }

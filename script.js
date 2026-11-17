@@ -38,8 +38,13 @@ export function afficherCard(cart) {
         <article class="card flex flex-col gap-3 rounded-card border-2 bg-white p-3 pb-4 hover:translate-y-2">
 
             <div class="relative flex h-40 items-center justify-center rounded-xl bg-brand-light">
-                <img src="${cart.image}" class="h-full w-full object-contain p-2" alt="${cart.name}">
-                <span class="font-mono text-sm text-muted">${cart.id}</span>
+                <img src="${cart.image}"
+                    class="h-full w-full object-contain p-2"
+                    alt="${cart.name}">
+
+                <span class="absolute left-3 top-2 font-mono text-sm text-muted">
+                    ${cart.id}
+                </span>
             </div>
 
             <div class="flex items-center justify-between gap-2 flex-col md:flex-row">

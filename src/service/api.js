@@ -9,6 +9,7 @@ export async function request (method, route, body = null) {
                 "Content-Type": "application/json"
             }
         };
+
         if(body!==null){
             options.body=JSON.stringify(body)
         }
@@ -30,4 +31,8 @@ export async function request (method, route, body = null) {
         throw error
     }
     
+}
+
+export async function getpokymonByType(type){
+    return request("GET",`/creatures?type=${type}`)
 }

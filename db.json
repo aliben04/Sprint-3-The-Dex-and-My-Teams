@@ -219,7 +219,7 @@
     },
     {
       "id": "25",
-      "name": "Pikachu",
+      "name": "pikachu",
       "type": "Electric",
       "level": "Base",
       "stats": { "hp": 35, "attack": 55, "defence": 40 },
