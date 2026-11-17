@@ -1,7 +1,7 @@
 import { afficherCard } from "../script.js";
-import { getPokymon } from "./service/api.js";
+import {  request } from "./service/api.js";
 
-console.log(await getPokymon(3,10))
+
 
 
 
@@ -11,7 +11,7 @@ export async function afficherPage(page) {
     let pageNumber=document.querySelector("#pageNumber")
     pageNumber.textContent = `Page ${page}`;
     try {
-        let listPok = await getPokymon(page,10);
+        let listPok = await request("GET",`/creatures?_page=${page}&_limit=12`);
         document.querySelector("#grid").innerHTML = "";
 
         if(listPok.length===0){

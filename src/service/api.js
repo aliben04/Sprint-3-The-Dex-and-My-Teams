@@ -1,20 +1,31 @@
-export async function getPokymon(page,limit) {
+export async function request (method, route, body = null) {
     let listPok=[]
     
-    let base_url= `http://localhost:3000/creatures?_page=${page}&_limit=${limit}`
+    let base_url=  `http://localhost:3000${route}` 
     try{
-        let response=await fetch(base_url).catch(
+        let options = {
+            method: method,
+            headers: {
+                "Content-Type": "application/json"
+            }
+        };
+        if(body!==null){
+            options.body=JSON.stringify(body)
+        }
+
+        let response=await fetch(base_url,options).catch(
             error => {
                 throw new Error("Network error");
         })
         if(!response.ok){
-            throw new Error("Could not fetch Pokemon");
+            throw new Error("API request failed");
         }
         let data =await response.json()
         for(let pok of data){
             listPok.push(pok)
         }
         return listPok
+
     }catch(error){
         throw error
     }

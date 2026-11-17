@@ -32,25 +32,18 @@ export function afficherCard(cart) {
 
     let typeShape = "bg-black";
 
-
     let article = document.createElement("article");
 
     article.innerHTML = `
-        <article class=" card flex flex-col gap-3 rounded-card border-2  bg-white p-3 pb-4 hover:translate-y-2">
+        <article class="card flex flex-col gap-3 rounded-card border-2 bg-white p-3 pb-4 hover:translate-y-2">
 
             <div class="relative flex h-40 items-center justify-center rounded-xl bg-brand-light">
-                <img src="${cart.image}"
-                    class="h-full w-full object-contain p-2"
-                    alt="${cart.name}">
-
-                <span class="absolute left-3 top-2 font-mono text-sm text-muted">
-                    ${cart.id}
-                </span>
+                <img src="${cart.image}" class="h-full w-full object-contain p-2" alt="${cart.name}">
+                <span class="font-mono text-sm text-muted">${cart.id}</span>
             </div>
 
             <div class="flex items-center justify-between gap-2 flex-col md:flex-row">
                 <h3 class="font-display text-xl font-semibold">${cart.name}</h3>
-
                 <span class="rounded-full ${typeShape} px-3 py-1 text-sm font-bold text-white">
                     ${cart.type}
                 </span>
@@ -67,195 +60,111 @@ export function afficherCard(cart) {
         </article>
     `;
 
-    // Bouton dyal la carte
     let btnA = article.querySelector("#ajouter");
 
+    actualiserBoutons(cart, btnA, article);
 
-    // Fonction bach nactualiw les deux boutons
-    function actualiserBoutons() {
-
-        let existe = teams.some(team => team.id === cart.id);
-
-        let btnD = detail.querySelector("#ajouter");
-
-        // Bouton dyal listPok
-        btnA.disabled = existe || teams.length >= 6;
-        if( teams.length === 6){
-            btnA.classList="btn-outline"
-            return
-        }
-        if (existe) {
-            btnA.className = "btn-outline";
-            article.style.border="black 1px solid"
-            article.style.borderRadius="20px"
-          
-        } else {
-            btnA.className = `btn-outline ${typeShape} text-white`;
-        }
-
-        // Bouton dyal Details
-        if (btnD && idPokemonDetail === cart.id) {
-
-            btnD.disabled = existe || teams.length >= 6;
-
-            if (existe) {
-                btnD.className = "btn-outline";
-            } else {
-                btnD.className = `btn-outline ${typeShape} text-white`;
-            }
-        }
-    }
-
-
-    // Fonction d'ajout à l'équipe
-    function ajouterTeam() {
-
-        let existe = teams.some(team => team.id === cart.id);
-
-        if (existe || teams.length >= 6) {
-            return;
-        }
-
-        let card = {
-            id: cart.id,
-            img: cart.image,
-            name: cart.name
-        };
-
-        teams.push(card);
-
-        localStorage.setItem("teams", JSON.stringify(teams));
-
-        addcartInTeam();
-
-        cmp.textContent = teams.length;
-
-        actualiserBoutons();
-
-        // Nactualiw bouton dyal nafs Pokémon f listPok
-        let boutons = section.querySelectorAll("article button#ajouter");
-
-        boutons.forEach(bouton => {
-            let carte = bouton.closest("article");
-            let id = carte.querySelector("span.font-mono");
-
-            if (id && id.textContent.trim() === String(cart.id)) {
-                bouton.disabled = true;
-                bouton.className = `btn-outline `;
-            }
-        });
-    }
-
-
-    // Click 3la bouton dyal listPok
     btnA.addEventListener("click", function(event) {
-        //event.stopPropagation();
-        ajouterTeam();
-
+        event.stopPropagation();
+        ajouterTeam(cart);
     });
 
-
-    // Afficher Details
     article.addEventListener("click", function() {
-
-        idPokemonDetail = cart.id;
-
-        detail.innerHTML = `
-            <div class="flex items-center justify-between">
-                <span class="font-mono text-sm text-muted">${cart.id}</span>
-
-                <button id="close" type="button"
-                    class="btn-outline bg-red-500 w-11 px-0">
-                    ✕
-                </button>
-            </div>
-
-            <div class="flex h-48 items-center justify-center rounded-2xl bg-brand-light">
-                <img src="${cart.image}"
-                    class="h-full w-full object-contain p-2"
-                    alt="${cart.name}">
-            </div>
-
-            <div class="flex items-center justify-between">
-                <h2 class="font-display text-3xl font-extrabold">${cart.name}</h2>
-
-                <span class="rounded-full ${typeShape} px-3 py-1 text-sm font-bold text-white">
-                    ${cart.type}
-                </span>
-            </div>
-
-            <p class="p text-gray-700">${cart.description}</p>
-
-            <div class="flex flex-col gap-2 text-sm">
-
-                <div class="grid grid-cols-[80px_1fr_40px] items-center gap-2">
-                    <span class="font-bold">PV</span>
-
-                    <span class="h-3 rounded-full bg-ground">
-                        <span class="block h-3 rounded-full ${typeShape}"
-                            style="width:${cart.stats.hp}%"></span>
-                    </span>
-
-                    <span class="text-right font-mono">${cart.stats.hp}</span>
-                </div>
-
-                <div class="grid grid-cols-[80px_1fr_40px] items-center gap-2">
-                    <span class="font-bold">Attaque</span>
-
-                    <span class="h-3 rounded-full bg-ground">
-                        <span class="block h-3 rounded-full ${typeShape}"
-                            style="width:${cart.stats.attack}%"></span>
-                    </span>
-
-                    <span class="text-right font-mono">${cart.stats.attack}</span>
-                </div>
-
-                <div class="grid grid-cols-[80px_1fr_40px] items-center gap-2">
-                    <span class="font-bold">Défense</span>
-
-                    <span class="h-3 rounded-full bg-ground">
-                        <span class="block h-3 rounded-full ${typeShape}"
-                            style="width:${cart.stats.defence}%"></span>
-                    </span>
-
-                    <span class="text-right font-mono">${cart.stats.defence}</span>
-                </div>
-
-            </div>
-
-            <button id="ajouter" type="button" class="btn-outline">
-                Ajouter à l'équipe
-            </button>
-        `;
-
-
-        // Fermer Details
-        detail.querySelector("#close").addEventListener("click", function(event) {
-            detail.innerHTML = `
-                <h1 class="text-center font-bold">
-                    Aucun Pokémon sélectionné
-                </h1>
-            `;
-        });
-
-
-        // Bouton dyal Details
-        let btnD = detail.querySelector("#ajouter");
-
-        btnD.addEventListener("click", function(event) {
-            ajouterTeam();
-        });
-
-        actualiserBoutons();
-
+        afficherDetails(cart, typeShape);
     });
-
-
-    // État initial dyal bouton
-    actualiserBoutons();
 
     section.append(article);
+}
 
+
+export function actualiserBoutons(cart, btnA, article) {
+
+    let existe = teams.some(team => team.id === cart.id);
+
+    let btnD = detail.querySelector("#ajouter");
+
+    btnA.disabled = existe || teams.length >= 6;
+
+    if (existe) {
+        btnA.className = "btn-outline";
+        article.style.border = "black 1px solid";
+        article.style.borderRadius = "20px";
+    } else {
+        btnA.className = "btn-outline bg-black text-white";
+    }
+
+    if (btnD && idPokemonDetail === cart.id) {
+
+        btnD.disabled = existe || teams.length >= 6;
+
+        btnD.className = existe
+            ? "btn-outline"
+            : "btn-outline bg-black text-white";
+    }
+}
+
+export function ajouterTeam(cart) {
+
+    let existe = teams.some(team => team.id === cart.id);
+
+    if (existe || teams.length >= 6) {
+        return;
+    }
+
+    let card = {
+        id: cart.id,
+        img: cart.image,
+        name: cart.name
+    };
+
+    teams.push(card);
+
+    localStorage.setItem("teams", JSON.stringify(teams));
+
+    addcartInTeam();
+
+    cmp.textContent = teams.length;
+
+    let boutons = section.querySelectorAll("button#ajouter");
+
+    boutons.forEach(bouton => {
+
+        let carte = bouton.closest("article");
+        let id = carte.querySelector("span.font-mono");
+
+        if (id && id.textContent.trim() === String(cart.id)) {
+            bouton.disabled = true;
+            bouton.className = "btn-outline";
+        }
+    });
+}
+
+export function afficherDetails(cart, typeShape) {
+
+    idPokemonDetail = cart.id;
+
+    detail.innerHTML = `
+        <!-- Hna dir HTML dyal Details li 3andek -->
+    `;
+
+    detail.querySelector("#close").addEventListener("click", function() {
+
+        idPokemonDetail = null;
+
+        detail.innerHTML = `
+            <h1 class="text-center font-bold">
+                Aucun Pokémon sélectionné
+            </h1>
+        `;
+    });
+
+    detail.querySelector("#ajouter").addEventListener("click", function() {
+        ajouterTeam(cart);
+    });
+
+    let btnA = section.querySelector("article button#ajouter");
+
+    actualiserBoutons(cart, btnA, btnA.closest("article"));
 }
 
 
@@ -294,40 +203,7 @@ search.addEventListener("input",()=>{
 // « Tous » réinitialise le filtre.
 // La recherche et le filtre fonctionnent ENSEMBLE.
 // -------------------------------------------------------------
-let types=[]
-creatures.forEach((pok)=>{
-      if (!types.includes(pok.type)) {
-          types.push(pok.type);
-      } 
-})
-let tous=document.querySelector("#tous")
-tous.addEventListener("click",()=>{
-    section.innerHTML = "";
-      creatures.forEach((pok)=>{
-        afficherCard(pok)
-      })
-    tous.className=`chip shrink-0 focus:${typeShape} focus:text-white focus:border-red-500`
-  })
-function filterWithType(type){
-  section.innerHTML = "";
-    creatures.forEach((pok)=>{
-      if(pok.type===type){
-        afficherCard(pok)
-      }
-    })
-}
 
-types.forEach((t)=>{
-    let button=document.createElement("button")
-    button.textContent=t;
-    button.className="chip shrink-0 "
-    button.addEventListener("click",()=>{
-      filterWithType(t)  
-      button.className="chip shrink-0 focus:bg-red-500 focus:text-white focus:border-red-500"
-      tous.className="chip shrink-0"
-    })
-    filters.append(button)
-})
 
 // -------------------------------------------------------------
 // 5. CRÉER UNE CRÉATURE
