@@ -28,15 +28,18 @@ await afficherFilter()
  let filters=document.querySelector("#filters")
  filters.addEventListener("click",async(e)=>{
     let button=e.target.closest("button")
+    if (!button) {
+        return;
+    }
     for (let btn of filters.children) {
         btn.classList.remove("bg-red-500", "text-white");
         btn.classList.add("bg-white");
     }
     button.classList.remove("bg-white");
     button.classList.add("bg-red-500", "text-white");
-    if (!button) {
-        return;
-    }
+    
+    localStorage.setItem("typeFilter", button.textContent);
+
 
     if(button.textContent==="tous"){
         
@@ -50,6 +53,30 @@ await afficherFilter()
         
     }
  })
+
+
+
+
+ 
+ let typeSaved = localStorage.getItem("typeFilter")|| "tous";
+for (let btn of filters.children) {
+    if (btn.textContent.trim() === typeSaved) {
+        btn.classList.remove("bg-white");
+        btn.classList.add("bg-red-500", "text-white");
+    }
+}
+if (typeSaved === "tous") {
+    let allPok = await request("GET", "/creatures");
+    afficherFilterCards(allPok);
+} else {
+    let pokType = await getpokymonByType(typeSaved);
+    afficherFilterCards(pokType);
+}
+
+
+
+
+
 
 let search=document.querySelector("#search")
 search.addEventListener("input",async()=>{
