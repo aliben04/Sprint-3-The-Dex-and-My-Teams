@@ -1,5 +1,5 @@
 import { afficherCard } from "../script.js";
-import {  request } from "./service/api.js";
+import {  request, searchByName } from "./service/api.js";
 
 
 
@@ -40,7 +40,7 @@ function afficherError(page,error) {
     createError.innerHTML = `
         
             <p>${error}</p>
-            <p>Check your Internet connection.</p>
+            
 
             <button id="retry" class="btn-primary bg-blue-500 text-white p-2 rounded">
                 Réessayer
@@ -141,3 +141,50 @@ export async function afficherFilterCards(list) {
         afficherCard(p)
     })
 }
+
+export function showErrorSearch(error) {
+
+    let error_ = document.querySelector("#loading").nextElementSibling;
+
+    let createError = document.createElement("div");
+
+    createError.className = "text-center p-5 flex flex-col justify-center items-center w-full col-span-full";
+
+    createError.innerHTML = `
+    <div class="text-center p-6 bg-red-50 rounded-xl border border-red-200">
+        <p class="text-red-600 text-lg font-bold">⚠️ Oops! An error occurred</p>
+        <p class="text-gray-600 text-sm mt-2">${error}</p>
+    </div>
+`;
+
+    error_.innerHTML = "";
+    error_.append(createError);
+
+}
+export async function searchName(name) {
+    if (name.trim() === "") {
+        return;
+    }
+    afficherLoading()
+    try {
+        
+        document.querySelector("#grid").innerHTML = ""
+        let pokymon=await searchByName(name)
+        if(pokymon!==null){
+            pokymon.forEach(p=>{
+                afficherCard(p)
+            })
+        }else{
+           throw new Error("Creature not found. Please enter its full name and check the spelling"); 
+        }
+    } catch (error) {
+        showErrorSearch(error.message)
+    }finally{
+        hideLoading()
+    }
+
+    
+}
+
+
+

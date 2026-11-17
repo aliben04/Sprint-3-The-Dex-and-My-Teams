@@ -149,7 +149,71 @@ export function afficherDetails(cart, typeShape) {
     idPokemonDetail = cart.id;
 
     detail.innerHTML = `
-        <!-- Hna dir HTML dyal Details li 3andek -->
+        
+            <div class="flex items-center justify-between">
+                <span class="font-mono text-sm text-muted">${cart.id}</span>
+
+                <button id="close" type="button"
+                    class="btn-outline bg-red-500 w-11 px-0">
+                    ✕
+                </button>
+            </div>
+
+            <div class="flex h-48 items-center justify-center rounded-2xl bg-brand-light">
+                <img src="${cart.image}"
+                    class="h-full w-full object-contain p-2"
+                    alt="${cart.name}">
+            </div>
+
+            <div class="flex items-center justify-between">
+                <h2 class="font-display text-3xl font-extrabold">${cart.name}</h2>
+
+                <span class="rounded-full ${typeShape} px-3 py-1 text-sm font-bold text-white">
+                    ${cart.type}
+                </span>
+            </div>
+            <p class="p text-gray-700">${cart.description}</p>
+
+            <div class="flex flex-col gap-2 text-sm">
+
+                <div class="grid grid-cols-[80px_1fr_40px] items-center gap-2">
+                    <span class="font-bold">PV</span>
+
+                    <span class="h-3 rounded-full bg-ground">
+                        <span class="block h-3 rounded-full ${typeShape}"
+                            style="width:${cart.stats.hp}%"></span>
+                    </span>
+
+                    <span class="text-right font-mono">${cart.stats.hp}</span>
+                </div>
+
+                <div class="grid grid-cols-[80px_1fr_40px] items-center gap-2">
+                    <span class="font-bold">Attaque</span>
+
+                    <span class="h-3 rounded-full bg-ground">
+                        <span class="block h-3 rounded-full ${typeShape}"
+                            style="width:${cart.stats.attack}%"></span>
+                    </span>
+
+                    <span class="text-right font-mono">${cart.stats.attack}</span>
+                </div>
+
+                <div class="grid grid-cols-[80px_1fr_40px] items-center gap-2">
+                    <span class="font-bold">Défense</span>
+
+                    <span class="h-3 rounded-full bg-ground">
+                        <span class="block h-3 rounded-full ${typeShape}"
+                            style="width:${cart.stats.defence}%"></span>
+                    </span>
+
+                    <span class="text-right font-mono">${cart.stats.defence}</span>
+                </div>
+
+            </div>
+
+            <button id="ajouter" type="button" class="btn-outline">
+                Ajouter à l'équipe
+            </button>
     `;
 
     detail.querySelector("#close").addEventListener("click", function() {
@@ -185,22 +249,6 @@ let detail=document.querySelector("#detail")
 // La liste se met à jour pendant la saisie d'un nom
 // (sans tenir compte des majuscules).
 // -------------------------------------------------------------
-
-let search=document.querySelector("#search")
-
-search.addEventListener("input",()=>{
-  section.innerHTML = "";
-  creatures.forEach((creat)=>{
-    if(creat.name.toLowerCase().includes(search.value.toLowerCase())){
-      afficherCard(creat)
-  }
-  
-  })
-  if (section.innerHTML === "") {
-        section.innerHTML = "<h1 class='text-center font-bold rounded-card border-2 border-ink bg-white p-6'>Aucun Pokémon trouvé !</h1>";
-  }
-
-})
 
 // -------------------------------------------------------------
 // 4. FILTRE

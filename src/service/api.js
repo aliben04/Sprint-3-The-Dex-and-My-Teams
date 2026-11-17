@@ -22,10 +22,9 @@ export async function request (method, route, body = null) {
             throw new Error("API request failed");
         }
         let data =await response.json()
-        for(let pok of data){
-            listPok.push(pok)
-        }
-        return listPok
+        console.log(data)
+        return data
+
 
     }catch(error){
         throw error
@@ -35,4 +34,16 @@ export async function request (method, route, body = null) {
 
 export async function getpokymonByType(type){
     return request("GET",`/creatures?type=${type}`)
+}
+export async function searchByName(name) {
+
+    let route = `/creatures?name=${encodeURIComponent(name.toLowerCase())}`;
+
+    let response = await request("GET", route);
+
+    if (response.length !== 0) {
+        return response;
+    } else {
+        return null;
+    }
 }

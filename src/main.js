@@ -1,6 +1,6 @@
 import { afficherCard } from "../script.js";
 import { getpokymonByType, request } from "./service/api.js";
-import { afficherFilter, afficherFilterCards, afficherPage } from "./ui.js";
+import { afficherFilter, afficherFilterCards, afficherPage, searchName } from "./ui.js";
 let page =1
 afficherPage(page)
 
@@ -50,3 +50,16 @@ await afficherFilter()
         
     }
  })
+
+let search=document.querySelector("#search")
+search.addEventListener("input",async()=>{
+    if(search.value.trim()===""){
+        let error_ = document.querySelector("#loading").nextElementSibling;
+        error_.innerHTML = "";
+        await afficherPage(1)
+        return
+    }else{
+
+        await searchName(search.value)
+    }
+})
