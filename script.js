@@ -42,7 +42,7 @@ export function afficherCard(cart) {
                     class="h-full w-full object-contain p-2"
                     alt="${cart.name}">
 
-                <span class="absolute left-3 top-2 font-mono text-sm text-muted">
+                <span id="id" class="absolute left-3 top-2 font-mono text-sm text-muted">
                     ${cart.id}
                 </span>
             </div>
@@ -72,10 +72,6 @@ export function afficherCard(cart) {
     btnA.addEventListener("click", function(event) {
         event.stopPropagation();
         ajouterTeam(cart);
-    });
-
-    article.addEventListener("click", function() {
-        afficherDetails(cart, typeShape);
     });
 
     section.append(article);

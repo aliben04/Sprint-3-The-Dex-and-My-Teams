@@ -31,10 +31,10 @@ export async function request (method, route, body = null) {
     }
     
 }
-
+/*
 export async function getpokymonByType(type){
     return request("GET",`/creatures?type=${type}`)
-}
+}*/
 export async function searchByName(name) {
 
     let route = `/creatures?name=${encodeURIComponent(name.toLowerCase())}`;
@@ -47,7 +47,7 @@ export async function searchByName(name) {
         return null;
     }
 }
-
+/*
 export async function sortpokymon(sortType){
       let route = "";
 
@@ -63,7 +63,7 @@ export async function sortpokymon(sortType){
      return await request("GET", route);
 
 }
-
+*/
 export async function getPokymon(type, sortType) {
 
     let route = "/creatures?";
@@ -86,4 +86,8 @@ export async function getPokymon(type, sortType) {
     }
 
     return await request("GET", route);
+}
+
+export async function getpokymonById(id){
+    return request("GET",`/creatures/${Number(id)}`)
 }

@@ -1,5 +1,5 @@
-import { afficherCard } from "../script.js";
-import { getpokymonByType, request, sortpokymon } from "./service/api.js";
+import { afficherCard, afficherDetails } from "../script.js";
+import {  getpokymonById, request } from "./service/api.js";
 import { actualiserPokymon, afficherError, afficherFilter, afficherFilterCards, afficherPage, searchName } from "./ui.js";
 let page =1
 afficherPage(page)
@@ -88,8 +88,7 @@ if (typeSaved === "tous") {
     let allPok = await request("GET", "/creatures");
     afficherFilterCards(allPok);
 } else {
-    let pokType = await getpokymonByType(typeSaved);
-    afficherFilterCards(pokType);
+    actualiserPokymon()
 }
 
 
@@ -130,4 +129,15 @@ sort.addEventListener("change",async(e)=>{
 */
 sort.addEventListener("change",async()=>{
     await actualiserPokymon();
+})
+
+let listPok=document.querySelector("#grid")
+
+listPok.addEventListener("click",async (e)=>{
+    let article=e.target.closest("article")
+    let id=article.querySelector("#id").textContent
+
+    let pok=await getpokymonById(id)
+    afficherDetails(pok,"bg-black")
+
 })
