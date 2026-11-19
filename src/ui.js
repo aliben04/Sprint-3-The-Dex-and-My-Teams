@@ -1,5 +1,5 @@
 import { afficherCard } from "../script.js";
-import {  request, searchByName } from "./service/api.js";
+import {  getPokymon, request, searchByName } from "./service/api.js";
 
 
 
@@ -32,7 +32,7 @@ export async function afficherPage(page) {
 }
 
 
-function afficherError(page,error) {
+export function afficherError(page,error) {
     let error_=document.querySelector("#loading").nextElementSibling
     let createError=document.createElement("div")
     createError.className="text-center p-5 flex flex-col justify-center items-center w-full col-span-full"
@@ -184,6 +184,26 @@ export async function searchName(name) {
     }
 
     
+}
+
+export async function actualiserPokymon() {
+
+    let type = localStorage.getItem("typeFilter") || "tous";
+    let sortType = document.querySelector("#sort").value;
+
+    try {
+        let data = await getPokymon(type, sortType);
+
+        let grid = document.querySelector("#grid");
+        grid.innerHTML = "";
+
+        data.forEach(pok => {
+            afficherCard(pok);
+        });
+
+    } catch (error) {
+        afficherError(1, error);
+    }
 }
 
 

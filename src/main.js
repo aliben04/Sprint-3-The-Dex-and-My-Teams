@@ -1,6 +1,6 @@
 import { afficherCard } from "../script.js";
-import { getpokymonByType, request } from "./service/api.js";
-import { afficherFilter, afficherFilterCards, afficherPage, searchName } from "./ui.js";
+import { getpokymonByType, request, sortpokymon } from "./service/api.js";
+import { actualiserPokymon, afficherError, afficherFilter, afficherFilterCards, afficherPage, searchName } from "./ui.js";
 let page =1
 afficherPage(page)
 
@@ -26,6 +26,7 @@ prev.addEventListener("click",async()=>{
 await afficherFilter()
 
  let filters=document.querySelector("#filters")
+ /*
  filters.addEventListener("click",async(e)=>{
     let button=e.target.closest("button")
     if (!button) {
@@ -54,10 +55,28 @@ await afficherFilter()
     }
  })
 
+*/
 
 
+ filters.addEventListener("click", async (e) => {
 
- 
+    let button = e.target.closest("button");
+
+    if (!button) return;
+
+    for (let btn of filters.children) {
+        btn.classList.remove("bg-red-500", "text-white");
+        btn.classList.add("bg-white");
+    }
+
+    button.classList.remove("bg-white");
+    button.classList.add("bg-red-500", "text-white");
+
+    localStorage.setItem("typeFilter", button.textContent);
+
+    await actualiserPokymon();
+});
+
  let typeSaved = localStorage.getItem("typeFilter")|| "tous";
 for (let btn of filters.children) {
     if (btn.textContent.trim() === typeSaved) {
@@ -89,4 +108,26 @@ search.addEventListener("input",async()=>{
 
         await searchName(search.value)
     }
+})
+
+
+
+let sort=document.querySelector("#sort")
+/*
+sort.addEventListener("change",async(e)=>{
+    let sortType=e.target.value
+    try {
+        let data=await sortpokymon(sortType)
+        let grid = document.querySelector("#grid");
+        grid.innerHTML = "";
+        data.forEach(pok => {
+            afficherCard(pok)
+        });
+    } catch (error) {
+        afficherError(1,error)
+    }
+})
+*/
+sort.addEventListener("change",async()=>{
+    await actualiserPokymon();
 })

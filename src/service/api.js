@@ -22,7 +22,7 @@ export async function request (method, route, body = null) {
             throw new Error("API request failed");
         }
         let data =await response.json()
-        console.log(data)
+        
         return data
 
 
@@ -46,4 +46,44 @@ export async function searchByName(name) {
     } else {
         return null;
     }
+}
+
+export async function sortpokymon(sortType){
+      let route = "";
+
+    if (sortType === "asc") {
+        route = "/creatures?_sort=name&_order=asc";
+    } 
+    else if (sortType === "desc") {
+        route = "/creatures?_sort=name&_order=desc";
+    } 
+    else if (sortType === "id") {
+        route = "/creatures?_sort=id&_order=asc";
+    }
+     return await request("GET", route);
+
+}
+
+export async function getPokymon(type, sortType) {
+
+    let route = "/creatures?";
+
+    if (type && type !== "tous") {
+        route += `type=${type}&`;
+    }
+
+    if (sortType === "asc") {
+        route += "_sort=name&_order=asc";
+    }
+    else if (sortType === "desc") {
+        route += "_sort=name&_order=desc";
+    }
+    else if (sortType === "id") {
+        route += "_sort=id&_order=asc";
+    }
+    else {
+        route = route.endsWith("&") ? route.slice(0, -1) : route;
+    }
+
+    return await request("GET", route);
 }
