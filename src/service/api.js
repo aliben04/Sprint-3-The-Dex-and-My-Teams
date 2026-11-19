@@ -21,7 +21,7 @@ export async function request (method, route, body = null) {
             throw new Error("API request failed");
         }
         let data =await response.json()
-    
+        console.log(base_url)
         return data
 
 
@@ -92,4 +92,8 @@ export async function getpokymonById(id){
 }
 export function addPokymon(pokymon){
     return request("POST","/creatures",pokymon)
+}
+
+export async function updatePokemon(newPok) {
+    return await request("PUT",`/creatures/${newPok.id}`,newPok)
 }

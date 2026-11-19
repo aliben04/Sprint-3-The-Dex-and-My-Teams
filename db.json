@@ -522,7 +522,7 @@
     },
     {
       "id": "42",
-      "name": "benettoumia",
+      "name": "benettoumialll",
       "type": "Feu",
       "level": "Level 3",
       "stats": {
@@ -530,7 +530,7 @@
         "attack": "95",
         "defence": "67"
       },
-      "image": "https://i.pinimg.com/736x/35/df/47/35df47a05c5523efe91c3f4ec17d6e35.jpg",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/122.png",
       "description": "fofofofofofo"
     },
     {
@@ -548,15 +548,15 @@
     },
     {
       "id": "44",
-      "name": "Emberkit",
+      "name": "renaldojjj",
       "type": "Eau",
       "level": "Niveau 1",
       "stats": {
-        "hp": "45",
-        "attack": "10",
+        "hp": "56",
+        "attack": "100",
         "defence": "45"
       },
-      "image": "https://i.pinimg.com/1200x/96/79/85/967985ca22b2b00b485eca2bd47295d2.jpg",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/418.png",
       "description": "axaxaxsxsxsxsxsx"
     }
   ]

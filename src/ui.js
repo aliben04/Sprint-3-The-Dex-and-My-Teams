@@ -229,6 +229,8 @@ export function afficherCard(cart) {
                 <span id="id" class="absolute left-3 top-2 font-mono text-sm text-muted">
                     ${cart.id}
                 </span>
+                 <a href="#creature-form"><i class="absolute right-0 top-2 fa-solid fa-pen-to-square mr-2"></i></a>
+                
             </div>
 
             <div class="flex items-center justify-between gap-2 flex-col md:flex-row">

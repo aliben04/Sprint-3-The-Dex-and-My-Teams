@@ -1,6 +1,6 @@
 
 import { addPok } from "../script.js";
-import {  addPokymon, getpokymonById, request } from "./service/api.js";
+import {  addPokymon, getpokymonById, request, updatePokemon } from "./service/api.js";
 import { setValeu } from "./storage.js";
 import { actualiserPokymon, afficherDetails, afficherError, afficherFilter, afficherFilterCards, afficherPage, getData, searchName } from "./ui.js";
 let page =1
@@ -134,12 +134,36 @@ sort.addEventListener("change",async()=>{
 })
 
 let listPok=document.querySelector("#grid")
-
+let idPok;
 listPok.addEventListener("click",async (e)=>{
-    let article=e.target.closest("article")
-    let id=article.querySelector("#id").textContent
 
-    let pok=await getpokymonById(id)
+     let edit = e.target.closest("i");
+    let article=e.target.closest("article")
+    idPok=article.querySelector("#id").textContent
+    let pok=await getpokymonById(idPok)
+    if (edit) {
+    
+        let form=document.querySelector("#creature-form")
+        for (let i of form.elements) {
+              if (i.name) {
+                if (i.name === "stat1") {
+                    i.value = pok.stats.hp;
+                }
+                else if (i.name === "stat2") {
+                    i.value = pok.stats.attack;
+                }
+                else if (i.name === "stat3") {
+                    i.value = pok.stats.defence;
+                }
+                else {
+                    i.value = pok[i.name];
+                }
+            }
+        }
+       document.querySelector("#update").classList.remove("hidden")
+       document.querySelector("#submit").classList.add("hidden")
+        return;
+    }    
     afficherDetails(pok,"bg-black")
 
 })
@@ -157,8 +181,6 @@ form.addEventListener("submit", async(e) => {
     
     e.preventDefault();
     let allPok= await request("GET","/creatures")
-   
-
 
     if (
          
@@ -173,7 +195,6 @@ form.addEventListener("submit", async(e) => {
     let maxId=0
     allPok.forEach(pok => {
         
-
         if (Number(pok.id) > maxId) {
             maxId = Number(pok.id);
         }
@@ -211,7 +232,39 @@ function saveData() {
 }
 
 
-
+let update=document.querySelector("#update")
+update.addEventListener('click',async(e)=>{
+    e.preventDefault();
+    
+    if (
+         
+        !inputs.validName() || !inputs.validLevel() ||
+        !inputs.validDescription() || !inputs.validImage() ||
+        !inputs.validSt() || !inputs.validSt2() ||
+        !inputs.validSt3() || inputs.type.value === ""
+    ) {
+        return;
+    }
+    
+    let newPok = {
+        id: Number(idPok),
+        name: inputs.name.value,
+        type: inputs.type.value,
+        level: inputs.level.value,
+        stats: {
+            hp: inputs.st.value,
+            attack: inputs.st2.value,
+            defence: inputs.st3.value
+        },
+        image: inputs.image.value,
+        description: inputs.description.value
+    };
+    await updatePokemon(newPok);
+    form.reset()
+    alert("Pokémon updated successfully!");
+})
 
 form.addEventListener("input", saveData);
 getData()
+
+
