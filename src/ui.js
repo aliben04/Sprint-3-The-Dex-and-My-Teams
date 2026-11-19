@@ -1,5 +1,6 @@
 import { teams } from "../script.js";
 import {  getPokymon, request, searchByName } from "./service/api.js";
+import { getValeus } from "./storage.js";
 
 
 
@@ -415,5 +416,14 @@ export function afficherDetails(cart, typeShape) {
     actualiserBoutons(cart, btnA, btnA.closest("article"));
 }
 
+export function getData(){
+    let form = document.querySelector("#creature-form");
+    let data=getValeus()
+    for(let i of form.elements){
+         if (i.name && data[i.name] !== undefined) {
+            i.value = data[i.name];
+        }
+    }
+}
 
 

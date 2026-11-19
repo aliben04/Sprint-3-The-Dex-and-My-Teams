@@ -1,7 +1,8 @@
 
 import { addPok } from "../script.js";
 import {  addPokymon, getpokymonById, request } from "./service/api.js";
-import { actualiserPokymon, afficherDetails, afficherError, afficherFilter, afficherFilterCards, afficherPage, searchName } from "./ui.js";
+import { setValeu } from "./storage.js";
+import { actualiserPokymon, afficherDetails, afficherError, afficherFilter, afficherFilterCards, afficherPage, getData, searchName } from "./ui.js";
 let page =1
 afficherPage(page)
 
@@ -168,6 +169,7 @@ form.addEventListener("submit", async(e) => {
     ) {
         return;
     }
+    
     let maxId=0
     allPok.forEach(pok => {
         
@@ -194,3 +196,22 @@ form.addEventListener("submit", async(e) => {
     
     form.reset();
 });
+
+function saveData() {
+    let form = document.querySelector("#creature-form");
+    let data = {};
+
+    for (let i of form.elements) {
+        if (i.name) {
+            data[i.name] = i.value;
+        }
+    }
+
+    setValeu(data);
+}
+
+
+
+
+form.addEventListener("input", saveData);
+getData()

@@ -545,6 +545,19 @@
       },
       "image": "https://i.pinimg.com/1200x/96/79/85/967985ca22b2b00b485eca2bd47295d2.jpg",
       "description": "12365478996"
+    },
+    {
+      "id": "44",
+      "name": "Emberkit",
+      "type": "Eau",
+      "level": "Niveau 1",
+      "stats": {
+        "hp": "45",
+        "attack": "10",
+        "defence": "45"
+      },
+      "image": "https://i.pinimg.com/1200x/96/79/85/967985ca22b2b00b485eca2bd47295d2.jpg",
+      "description": "axaxaxsxsxsxsxsx"
     }
   ]
 }
