@@ -1,4 +1,5 @@
 import { creatures } from "./data.js";
+import { afficherCard } from "./src/ui.js";
 // =============================================================
 // script.js — Mon Dex
 // =============================================================
@@ -22,222 +23,17 @@ div.addEventListener("click", () => {
 });
 let cmp=document.querySelector("#cmp")
 
-let teams = JSON.parse(localStorage.getItem("teams")) || [];
+export let teams = JSON.parse(localStorage.getItem("teams")) || [];
 let tem = teams;
 
 
-let idPokemonDetail = ""
-
-export function afficherCard(cart) {
-
-    let typeShape = "bg-black";
-
-    let article = document.createElement("article");
-
-    article.innerHTML = `
-        <article class="card flex flex-col gap-3 rounded-card border-2 bg-white p-3 pb-4 hover:translate-y-2">
-
-            <div class="relative flex h-40 items-center justify-center rounded-xl bg-brand-light">
-                <img src="${cart.image}"
-                    class="h-full w-full object-contain p-2"
-                    alt="${cart.name}">
-
-                <span id="id" class="absolute left-3 top-2 font-mono text-sm text-muted">
-                    ${cart.id}
-                </span>
-            </div>
-
-            <div class="flex items-center justify-between gap-2 flex-col md:flex-row">
-                <h3 class="font-display text-xl font-semibold">${cart.name}</h3>
-                <span class="rounded-full ${typeShape} px-3 py-1 text-sm font-bold text-white">
-                    ${cart.type}
-                </span>
-            </div>
-
-            <p class="text-sm text-muted">
-                ${cart.level} · Total ${cart.stats.attack + cart.stats.defence}
-            </p>
-
-            <button id="ajouter" type="button" class="btn-outline">
-                Ajouter à l'équipe
-            </button>
-
-        </article>
-    `;
-
-    let btnA = article.querySelector("#ajouter");
-
-    actualiserBoutons(cart, btnA, article);
-
-    btnA.addEventListener("click", function(event) {
-        event.stopPropagation();
-        ajouterTeam(cart);
-    });
-
-    section.append(article);
-}
 
 
-export function actualiserBoutons(cart, btnA, article) {
-
-    let existe = teams.some(team => team.id === cart.id);
-
-    let btnD = detail.querySelector("#ajouter");
-
-    btnA.disabled = existe || teams.length >= 6;
-
-    if (existe) {
-        btnA.className = "btn-outline";
-        article.style.border = "black 1px solid";
-        article.style.borderRadius = "20px";
-    } else {
-        btnA.className = "btn-outline bg-black text-white";
-    }
-
-    if (btnD && idPokemonDetail === cart.id) {
-
-        btnD.disabled = existe || teams.length >= 6;
-
-        btnD.className = existe
-            ? "btn-outline"
-            : "btn-outline bg-black text-white";
-    }
-}
-
-export function ajouterTeam(cart) {
-
-    let existe = teams.some(team => team.id === cart.id);
-
-    if (existe || teams.length >= 6) {
-        return;
-    }
-
-    let card = {
-        id: cart.id,
-        img: cart.image,
-        name: cart.name
-    };
-
-    teams.push(card);
-
-    localStorage.setItem("teams", JSON.stringify(teams));
-
-    addcartInTeam();
-
-    cmp.textContent = teams.length;
-
-    let boutons = section.querySelectorAll("button#ajouter");
-
-    boutons.forEach(bouton => {
-
-        let carte = bouton.closest("article");
-        let id = carte.querySelector("span.font-mono");
-
-        if (id && id.textContent.trim() === String(cart.id)) {
-            bouton.disabled = true;
-            bouton.className = "btn-outline";
-        }
-    });
-}
-
-export function afficherDetails(cart, typeShape) {
-
-    idPokemonDetail = cart.id;
-
-    detail.innerHTML = `
-        
-            <div class="flex items-center justify-between">
-                <span class="font-mono text-sm text-muted">${cart.id}</span>
-
-                <button id="close" type="button"
-                    class="btn-outline bg-red-500 w-11 px-0">
-                    ✕
-                </button>
-            </div>
-
-            <div class="flex h-48 items-center justify-center rounded-2xl bg-brand-light">
-                <img src="${cart.image}"
-                    class="h-full w-full object-contain p-2"
-                    alt="${cart.name}">
-            </div>
-
-            <div class="flex items-center justify-between">
-                <h2 class="font-display text-3xl font-extrabold">${cart.name}</h2>
-
-                <span class="rounded-full ${typeShape} px-3 py-1 text-sm font-bold text-white">
-                    ${cart.type}
-                </span>
-            </div>
-            <p class="p text-gray-700">${cart.description}</p>
-
-            <div class="flex flex-col gap-2 text-sm">
-
-                <div class="grid grid-cols-[80px_1fr_40px] items-center gap-2">
-                    <span class="font-bold">PV</span>
-
-                    <span class="h-3 rounded-full bg-ground">
-                        <span class="block h-3 rounded-full ${typeShape}"
-                            style="width:${cart.stats.hp}%"></span>
-                    </span>
-
-                    <span class="text-right font-mono">${cart.stats.hp}</span>
-                </div>
-
-                <div class="grid grid-cols-[80px_1fr_40px] items-center gap-2">
-                    <span class="font-bold">Attaque</span>
-
-                    <span class="h-3 rounded-full bg-ground">
-                        <span class="block h-3 rounded-full ${typeShape}"
-                            style="width:${cart.stats.attack}%"></span>
-                    </span>
-
-                    <span class="text-right font-mono">${cart.stats.attack}</span>
-                </div>
-
-                <div class="grid grid-cols-[80px_1fr_40px] items-center gap-2">
-                    <span class="font-bold">Défense</span>
-
-                    <span class="h-3 rounded-full bg-ground">
-                        <span class="block h-3 rounded-full ${typeShape}"
-                            style="width:${cart.stats.defence}%"></span>
-                    </span>
-
-                    <span class="text-right font-mono">${cart.stats.defence}</span>
-                </div>
-
-            </div>
-
-            <button id="ajouter" type="button" class="btn-outline">
-                Ajouter à l'équipe
-            </button>
-    `;
-
-    detail.querySelector("#close").addEventListener("click", function() {
-
-        idPokemonDetail = null;
-
-        detail.innerHTML = `
-            <h1 class="text-center font-bold">
-                Aucun Pokémon sélectionné
-            </h1>
-        `;
-    });
-
-    detail.querySelector("#ajouter").addEventListener("click", function() {
-        ajouterTeam(cart);
-    });
-
-    let btnA = section.querySelector("article button#ajouter");
-
-    actualiserBoutons(cart, btnA, btnA.closest("article"));
-}
 
 
 
 cmp.textContent=teams.length
-let section=document.querySelector("#grid")
-let filters=document.querySelector("#filters")
-let detail=document.querySelector("#detail")
+
 
       
 // -------------------------------------------------------------
@@ -261,176 +57,57 @@ let detail=document.querySelector("#detail")
 // champ, et n'ajoutez jamais une créature invalide.
 // -------------------------------------------------------------
 let listPok=JSON.parse(localStorage.getItem("listPok"))|| [];
-console.log(creatures)
+
 if(listPok.length!==0){
     listPok.forEach((p)=>{
         afficherCard(p)
     })
 }
-function addPok(){
-  let id=document.querySelector("input[name=\"id\"]")
-  let id_error=id.nextElementSibling
-  let id_reg=/^#\d{3}$/
-  let existe = false
-  id.addEventListener("input",()=>{
-      
-    existe = listPok.some(pok => pok.id === id.value);
-    if(existe){
-        id_error.textContent="this id is already exist"
-          id_error.classList="text-red-500"
-          id.style.border="red 2px solid"
-          id.style.boxShadow="2px 2px 5px red"
-    } else if(id_reg.test(id.value)){
-          id_error.textContent="numero valid"
-          id_error.classList="text-green-500"
-          id.style.border="green 2px solid"
-          id.style.boxShadow="2px 2px 5px green"
-    }else{
-          id_error.textContent="numero invalid"
-          id_error.classList="text-red-500"
-          id.style.border="red 2px solid"
-          id.style.boxShadow="2px 2px 5px red"
-    }
-  })
-  let name=document.querySelector("input[name=\"name\"]")
-  let name_error=name.nextElementSibling
-  let name_reg=/^[A-Za-zÀ-ÿ0-9][A-Za-zÀ-ÿ09 .'-]{1,29}$/
-  name.addEventListener("input",()=>{
 
-    if(name_reg.test(name.value)){
-          name_error.textContent="name valid"
-          name_error.classList="text-green-500"
-          name.style.border="green 2px solid"
-          name.style.boxShadow="2px 2px 5px green"
-    }else{
-          name_error.textContent="name invalid"
-          name_error.classList="text-red-500"
-          name.style.border="red 2px solid"
-          name.style.boxShadow="2px 2px 5px red"
-    }
-  }) 
-  let niveu=document.querySelector("input[name=\"level\"]")
-  let niveu_error=niveu.nextElementSibling
-  let niveu_reg=/^(Niveau|Level)\s\d{1}$/
-  niveu.addEventListener("input",()=>{
+function validation(input, regex, message) {
+    let error = input.nextElementSibling;
 
-    if(niveu_reg.test(niveu.value)){
-          niveu_error.textContent="niveu valid"
-          niveu_error.classList="text-green-500"
-          niveu.style.border="green 2px solid"
-          niveu.style.boxShadow="2px 2px 5px green"
-    }else{
-          niveu_error.textContent="niveu invalid"
-          niveu_error.classList="text-red-500"
-          niveu.style.border="red 2px solid"
-          niveu.style.boxShadow="2px 2px 5px red"
-    }
-  })
-  let description=document.querySelector("textarea[name=\"description\"]")
-  let description_error=description.nextElementSibling
-  let description_reg=/^[\s\S]{10,200}$/ 
-  description.addEventListener("input",()=>{
+    input.addEventListener("input", () => {
+        let valid = regex.test(input.value);
 
-    if(description_reg.test(description.value)){
-          description_error.textContent="description valid"
-          description_error.classList="text-green-500"
-          description.style.border="green 2px solid"
-          description.style.boxShadow="2px 2px 5px green"
-    }else{
-          description_error.textContent="description invalid"
-          description_error.classList="text-red-500"
-          description.style.border="red 2px solid"
-          description.style.boxShadow="2px 2px 5px red"
-    }
-  })
-  let image=document.querySelector("input[name=\"image\"]")
-  let image_error=image.nextElementSibling
-  let image_reg=/^https:\/\/\S+\.(png|jpe?g|webp|gif)$/i 
-  image.addEventListener("input",()=>{
+        error.textContent = valid ? message + " valid" : message + " invalid";
+        error.className = valid ? "text-green-500" : "text-red-500";
 
-    if(image_reg.test(image.value)){
-          image_error.textContent="image valid"
-          image_error.classList="text-green-500"
-          image.style.border="green 2px solid"
-          image.style.boxShadow="2px 2px 5px green"
-    }else{
-          image_error.textContent="image invalid"
-          image_error.classList="text-red-500"
-          image.style.border="red 2px solid"
-          image.style.boxShadow="2px 2px 5px red"
-    }
-  })
-  let type = document.querySelector('select[name="type"]');
-  let type_error = type.nextElementSibling;
+        input.style.border = valid ? "2px solid green" : "2px solid red";
+        input.style.boxShadow = valid ? "2px 2px 5px green" : "2px 2px 5px red";
 
-  type.addEventListener("change", () => {
-      if (type.value === "") {
-          type_error.textContent = "Veuillez choisir un type";
-          type_error.classList="text-red-500"
-          type.style.border="red 2px solid"
-          type.style.boxShadow="2px 2px 5px red"
-      } else {
-          type_error.textContent = "type valid";
-          type_error.classList="text-green-500"
-          type.style.border="green 2px solid"
-          type.style.boxShadow="2px 2px 5px green"
-          type_error.classList.remove("text-red-500");
-      }
-  });
-  let st=document.querySelector("input[name=\"stat1\"]")
-  checkStatistique(st)
-  let st2=document.querySelector("input[name=\"stat2\"]")
-  checkStatistique(st2)
-  let st3=document.querySelector("input[name=\"stat3\"]")
-  checkStatistique(st3)
-  let form = document.querySelector("#creature-form");
-  let btnnSubmit = document.querySelector("#submit");
-  
-  form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      if (existe||st.value === "" || st2.value==="" || st3.value==="" || type.value==="" || image.value==="" || description.value===""|| niveu.value===""|| name.value===""|| id.value==="") {
-          btnnSubmit.style.backgroundColor = "red"
-          return;
-      }else{
-        let cart=  {
-          id: id.value,
-          name: name.value,
-          type: type.value,
-          level: niveu.value,
-          stats: { hp: st.value, attack: st2.value, defence: st3.value },
-          image: image.value,
-          description: description.value
-        }
-        listPok.push(cart)
-        localStorage.setItem("listPok",JSON.stringify(listPok))
-        afficherCard(cart);
+    });
 
-        form.reset();
-        form.style.backgroundColor = "";
-    
-      }
-  });
-
+    return () => regex.test(input.value);
 }
+export function addPok() {
 
-function checkStatistique(st){
-  let st_error=st.nextElementSibling
-  let st_reg=/^\d{1,3}$/ 
-  st.addEventListener("input",()=>{
+   
+    let name = document.querySelector('[name="name"]');
+    let level = document.querySelector('[name="level"]');
+    let description = document.querySelector('[name="description"]');
+    let image = document.querySelector('[name="image"]');
+    let type = document.querySelector('[name="type"]');
 
-    if(st_reg.test(st.value)){
-          st_error.textContent="st valid"
-          st_error.classList="text-green-500"
-          st.style.border="green 2px solid"
-          st.style.boxShadow="2px 2px 5px green"
-    }else{
-          st_error.textContent="st invalid"
-          st_error.classList="text-red-500"
-          st.style.border="red 2px solid"
-          st.style.boxShadow="2px 2px 5px red"
-    }
-  })
+    let st = document.querySelector('[name="stat1"]');
+    let st2 = document.querySelector('[name="stat2"]');
+    let st3 = document.querySelector('[name="stat3"]');
 
+   
+    let validName = validation(name, /^[A-Za-zÀ-ÿ0-9][A-Za-zÀ-ÿ0-9 .'-]{1,29}$/, "Name");
+    let validLevel = validation(level, /^(Niveau|Level)\s\d$/, "Level");
+    let validDescription = validation(description, /^[\s\S]{10,200}$/, "Description");
+    let validImage = validation(image, /^https:\/\/\S+\.(png|jpe?g|webp|gif)$/i, "Image");
+
+    let validSt = validation(st, /^\d{1,3}$/, "Stats");
+    let validSt2 = validation(st2, /^\d{1,3}$/, "Stats");
+    let validSt3 = validation(st3, /^\d{1,3}$/, "Stats");
+
+   return {
+         name, level, description, image, type, st, st2, st3
+         , validName, validLevel, validDescription,
+        validImage, validSt, validSt2, validSt3
+    };
 }
 addPok()
 

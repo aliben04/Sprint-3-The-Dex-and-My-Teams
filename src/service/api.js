@@ -1,6 +1,5 @@
 export async function request (method, route, body = null) {
-    let listPok=[]
-    
+
     let base_url=  `http://localhost:3000${route}` 
     try{
         let options = {
@@ -22,7 +21,7 @@ export async function request (method, route, body = null) {
             throw new Error("API request failed");
         }
         let data =await response.json()
-        
+    
         return data
 
 
@@ -90,4 +89,7 @@ export async function getPokymon(type, sortType) {
 
 export async function getpokymonById(id){
     return request("GET",`/creatures/${Number(id)}`)
+}
+export function addPokymon(pokymon){
+    return request("POST","/creatures",pokymon)
 }

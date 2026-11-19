@@ -1,6 +1,7 @@
-import { afficherCard, afficherDetails } from "../script.js";
-import {  getpokymonById, request } from "./service/api.js";
-import { actualiserPokymon, afficherError, afficherFilter, afficherFilterCards, afficherPage, searchName } from "./ui.js";
+
+import { addPok } from "../script.js";
+import {  addPokymon, getpokymonById, request } from "./service/api.js";
+import { actualiserPokymon, afficherDetails, afficherError, afficherFilter, afficherFilterCards, afficherPage, searchName } from "./ui.js";
 let page =1
 afficherPage(page)
 
@@ -141,3 +142,55 @@ listPok.addEventListener("click",async (e)=>{
     afficherDetails(pok,"bg-black")
 
 })
+
+
+let inputs = addPok();
+
+let form = document.querySelector("#creature-form");
+
+inputs.type.addEventListener("change", async() => {
+    inputs.type.nextElementSibling.textContent =
+        inputs.type.value ? "Type valid" : "Choose a type";
+});
+form.addEventListener("submit", async(e) => {
+    
+    e.preventDefault();
+    let allPok= await request("GET","/creatures")
+   
+
+
+    if (
+         
+        !inputs.validName() || !inputs.validLevel() ||
+        !inputs.validDescription() || !inputs.validImage() ||
+        !inputs.validSt() || !inputs.validSt2() ||
+        !inputs.validSt3() || inputs.type.value === ""
+    ) {
+        return;
+    }
+    let maxId=0
+    allPok.forEach(pok => {
+        
+
+        if (Number(pok.id) > maxId) {
+            maxId = Number(pok.id);
+        }
+    });
+    let newId = String(maxId + 1);
+    let cart = {
+        id: newId,
+        name: inputs.name.value,
+        type: inputs.type.value,
+        level: inputs.level.value,
+        stats: {
+            hp: inputs.st.value,
+            attack: inputs.st2.value,
+            defence: inputs.st3.value
+        },
+        image: inputs.image.value,
+        description: inputs.description.value
+    };
+    addPokymon(cart)
+    
+    form.reset();
+});
