@@ -229,7 +229,11 @@ export function afficherCard(cart) {
                 <span id="id" class="absolute left-3 top-2 font-mono text-sm text-muted">
                     ${cart.id}
                 </span>
-                 <a href="#creature-form"><i class="absolute right-0 top-2 fa-solid fa-pen-to-square mr-2"></i></a>
+                <div class="absolute right-0 top-2">
+                    <i id="delete" class="fa-solid fa-trash  cursor-pointer hover:text-red-500"></i>
+                    <a href="#creature-form"><i id="update" class="fa-solid fa-pen-to-square mr-2"></i></a>
+                </div>
+                
                 
             </div>
 

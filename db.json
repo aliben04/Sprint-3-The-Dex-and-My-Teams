@@ -521,19 +521,6 @@
       "description": "A gentle Pokémon with a soft body and a beautiful singing voice."
     },
     {
-      "id": "42",
-      "name": "benettoumialll",
-      "type": "Feu",
-      "level": "Level 3",
-      "stats": {
-        "hp": "755",
-        "attack": "95",
-        "defence": "67"
-      },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/122.png",
-      "description": "fofofofofofo"
-    },
-    {
       "id": "43",
       "name": "Emberkit",
       "type": "Eau",
@@ -548,15 +535,15 @@
     },
     {
       "id": "44",
-      "name": "renaldojjj",
-      "type": "Eau",
+      "name": "mahedi",
+      "type": "Électrik",
       "level": "Niveau 1",
       "stats": {
         "hp": "56",
         "attack": "100",
         "defence": "45"
       },
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/418.png",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/122.png",
       "description": "axaxaxsxsxsxsxsx"
     }
   ]

@@ -97,3 +97,6 @@ export function addPokymon(pokymon){
 export async function updatePokemon(newPok) {
     return await request("PUT",`/creatures/${newPok.id}`,newPok)
 }
+export async function deletePokemon(id) {
+    return await request("DELETE",`/creatures/${id}`)
+}

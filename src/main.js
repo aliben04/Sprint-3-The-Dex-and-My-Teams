@@ -1,6 +1,6 @@
 
 import { addPok } from "../script.js";
-import {  addPokymon, getpokymonById, request, updatePokemon } from "./service/api.js";
+import {  addPokymon, deletePokemon, getpokymonById, request, updatePokemon } from "./service/api.js";
 import { setValeu } from "./storage.js";
 import { actualiserPokymon, afficherDetails, afficherError, afficherFilter, afficherFilterCards, afficherPage, getData, searchName } from "./ui.js";
 let page =1
@@ -137,7 +137,8 @@ let listPok=document.querySelector("#grid")
 let idPok;
 listPok.addEventListener("click",async (e)=>{
 
-     let edit = e.target.closest("i");
+    let edit = e.target.closest("#update");
+    let deletePok = e.target.closest("#delete");
     let article=e.target.closest("article")
     idPok=article.querySelector("#id").textContent
     let pok=await getpokymonById(idPok)
@@ -163,7 +164,11 @@ listPok.addEventListener("click",async (e)=>{
        document.querySelector("#update").classList.remove("hidden")
        document.querySelector("#submit").classList.add("hidden")
         return;
-    }    
+    } 
+    if(deletePok){
+         deletePoky(idPok.trim())
+         return
+    }   
     afficherDetails(pok,"bg-black")
 
 })
@@ -260,7 +265,6 @@ update.addEventListener('click',async(e)=>{
         description: inputs.description.value
     };
     await updatePokemon(newPok);
-    form.reset()
     alert("Pokémon updated successfully!");
 })
 
@@ -268,3 +272,10 @@ form.addEventListener("input", saveData);
 getData()
 
 
+async function deletePoky(id) {
+    let confirmation = confirm("Are you sure you want to delete this creature?")
+    if(confirmation){
+        await deletePokemon(id)
+         alert("Creature successfully deleted!");
+    }
+}
