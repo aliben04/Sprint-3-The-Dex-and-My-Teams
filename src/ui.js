@@ -13,6 +13,7 @@ export async function afficherPage(page) {
     pageNumber.textContent = `Page ${page}`;
     try {
         let listPok = await request("GET",`/creatures?_page=${page}&_limit=12`);
+        
         document.querySelector("#grid").innerHTML = "";
 
         if(listPok.length===0){
@@ -238,7 +239,7 @@ export function afficherCard(cart) {
             </div>
 
             <div class="flex items-center justify-between gap-2 flex-col md:flex-row">
-                <h3 class="font-display text-xl font-semibold">${cart.name}</h3>
+                <h3 class="font-display font-semibold">${cart.name}</h3>
                 <span class="rounded-full ${typeShape} px-3 py-1 text-sm font-bold text-white">
                     ${cart.type}
                 </span>

@@ -8,56 +8,46 @@ afficherPage(page)
 
 
 let prev=document.querySelector("#prev")
-let next=document.querySelector("#next")
-
-next.addEventListener("click",async()=>{
-    BigInt.disabled =true
+let btnNext=document.querySelector("#next")
+let totalPage=await request("GET","/creatures")
+btnNext.addEventListener("click",async()=>{
+    
+    btnNext.disabled =true
     page++
     try {
         await afficherPage(page);
     } catch (error) {
-        btnNext.disabled = false
+        afficherError(error)
+    }finally {
+        //btnNext.disabled = page >=Math.ceil(totalPage.length/12) ;
+        updateButtons()
+    }
+    if(page >=Math.ceil(totalPage.length/12)){
+        btnNext.classList.add("bg-gray-300")
     }
 })
-prev.addEventListener("click",async()=>{
+prev.addEventListener("click", async () => {
     if (page > 1) {
+        prev.disabled = true;          // block double-clicks while loading
+        btnNext.disabled = true;
         page--;
-        await afficherPage(page);
+        try {
+            await afficherPage(page);
+        } catch (error) {
+            afficherError(error);
+        } finally {
+            updateButtons();           // re-enable according to the current page
+        }
     }
-})
+    });
+function updateButtons() {
+    prev.disabled = page <= 1;
+    btnNext.disabled = page >=Math.ceil(totalPage.length/12) ;
+    prev.classList.toggle("bg-gray-300", page <= 1);
+}
 await afficherFilter()
 
  let filters=document.querySelector("#filters")
- /*
- filters.addEventListener("click",async(e)=>{
-    let button=e.target.closest("button")
-    if (!button) {
-        return;
-    }
-    for (let btn of filters.children) {
-        btn.classList.remove("bg-red-500", "text-white");
-        btn.classList.add("bg-white");
-    }
-    button.classList.remove("bg-white");
-    button.classList.add("bg-red-500", "text-white");
-    
-    localStorage.setItem("typeFilter", button.textContent);
-
-
-    if(button.textContent==="tous"){
-        
-        let allPok=await request("GET","/creatures")
-    
-        afficherFilterCards(allPok)
-    }
-    else{
-        let pokType=await getpokymonByType(button.textContent)
-        afficherFilterCards(pokType)
-        
-    }
- })
-
-*/
 
 
  filters.addEventListener("click", async (e) => {
