@@ -151,7 +151,7 @@ listPok.addEventListener("click",async (e)=>{
                 }
             }
         }
-       document.querySelector("#update").classList.remove("hidden")
+       document.querySelector("#updatePok").classList.remove("hidden")
        document.querySelector("#submit").classList.add("hidden")
         return;
     } 
@@ -227,7 +227,7 @@ function saveData() {
 }
 
 
-let update=document.querySelector("#update")
+let update=document.querySelector("#updatePok")
 update.addEventListener('click',async(e)=>{
     e.preventDefault();
     
