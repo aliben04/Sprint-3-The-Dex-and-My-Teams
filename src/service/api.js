@@ -100,3 +100,9 @@ export async function updatePokemon(newPok) {
 export async function deletePokemon(id) {
     return await request("DELETE",`/creatures/${id}`)
 }
+
+
+
+export async function AddToTeam(pok) {
+    return await request("POST","/teams",pok)
+}

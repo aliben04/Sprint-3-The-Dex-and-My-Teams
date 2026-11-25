@@ -117,41 +117,6 @@ addPok()
 // écouteur sur la grille et UN SEUL sur l'équipe (délégation).
 // -------------------------------------------------------------
 
-console.log(teams)
-
-
-let listT=document.querySelector("#listT")
-function addcartInTeam() {
-  let teamCount=document.querySelector("#team-count")
-    listT.innerHTML = "";
-
-    teams.forEach((te) => {
-        let div = document.createElement("div");
-
-        div.innerHTML = `
-            <div  class="relative border flex flex-col rounded-lg p-2">
-             <button id="removePok" ><i class="fa-solid fa-xmark text-[16px] absolute right-0 top-1 text-red-500"></i></button>
-                <img src="${te.img}" alt="${te.name}" class="py-3">
-                <h3 class="text-[16px] font-bold text-center">
-                    ${te.name}
-                </h3>
-            </div>
-        `;
-
-        listT.append(div);
-        div.querySelector("#removePok").addEventListener("click",()=>{
-          
-          teams.splice(teams.indexOf(te),1)
-          localStorage.setItem("teams", JSON.stringify(teams));
-          cmp.textContent=teams.length
-          addcartInTeam();
-          let btnA = article.querySelector("#ajouter");
-        })
-        
-      });
-      teamCount.innerHTML=teams.length
-    }
-addcartInTeam()
 // -------------------------------------------------------------
 // 7. RÈGLES DE L'ÉQUIPE
 // 6 créatures au maximum, pas de doublon, un message clair quand

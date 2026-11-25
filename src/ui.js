@@ -260,11 +260,6 @@ export function afficherCard(cart) {
 
     actualiserBoutons(cart, btnA, article);
 
-    btnA.addEventListener("click", function(event) {
-        event.stopPropagation();
-        ajouterTeam(cart);
-    });
-
     section.append(article);
 }
 
@@ -294,7 +289,7 @@ export function actualiserBoutons(cart, btnA, article) {
             : "btn-outline bg-black text-white";
     }
 }
-
+/*
 export function ajouterTeam(cart) {
 
     let existe = teams.some(team => team.id === cart.id);
@@ -330,7 +325,7 @@ export function ajouterTeam(cart) {
         }
     });
 }
-
+*/
 export function afficherDetails(cart, typeShape) {
 
     idPokemonDetail = cart.id;
@@ -414,10 +409,6 @@ export function afficherDetails(cart, typeShape) {
         `;
     });
 
-    detail.querySelector("#ajouter").addEventListener("click", function() {
-        ajouterTeam(cart);
-    });
-
     let btnA = section.querySelector("article button#ajouter");
 
     actualiserBoutons(cart, btnA, btnA.closest("article"));
@@ -432,5 +423,39 @@ export function getData(){
         }
     }
 }
+
+
+
+export async function addcartInTeam() {
+    let listT=document.querySelector("#listT")
+    let teamCount=document.querySelector("#team-count")
+    listT.innerHTML = "";
+    let teams=await request("GET","/teams")
+    teams.forEach((te) => {
+        let div = document.createElement("div");
+        div.className="relative border flex flex-col rounded-lg p-2"
+        div.innerHTML = `
+            
+             <button id="removePok" ><i class="fa-solid fa-xmark text-[16px] absolute right-0 top-1 text-red-500"></i></button>
+                <img src="${te.img}" alt="${te.name}" class="py-3">
+                <h3 class="text-[16px] font-bold text-center">
+                    ${te.name}
+                </h3>
+            
+        `;
+
+        listT.append(div);
+        /*
+        div.querySelector("#removePok").addEventListener("click",()=>{
+          
+          teams.splice(teams.indexOf(te),1)
+          localStorage.setItem("teams", JSON.stringify(teams));
+          cmp.textContent=teams.length
+          addcartInTeam();
+        })*/
+        
+      });
+      teamCount.innerHTML=teams.length
+    }
 
 

@@ -1,8 +1,8 @@
 
 import { addPok } from "../script.js";
-import {  addPokymon, deletePokemon, getpokymonById, request, updatePokemon } from "./service/api.js";
+import {  addPokymon, AddToTeam, deletePokemon, getpokymonById, request, updatePokemon } from "./service/api.js";
 import { setValeu } from "./storage.js";
-import { actualiserPokymon, afficherDetails, afficherError, afficherFilter, afficherFilterCards, afficherPage, getData, searchName } from "./ui.js";
+import { actualiserPokymon, addcartInTeam, afficherDetails, afficherError, afficherFilter, afficherFilterCards, afficherPage, getData, searchName } from "./ui.js";
 let page =1
 afficherPage(page)
 
@@ -129,6 +129,7 @@ listPok.addEventListener("click",async (e)=>{
 
     let edit = e.target.closest("#update");
     let deletePok = e.target.closest("#delete");
+    let ajouter = e.target.closest("#ajouter");
     let article=e.target.closest("article")
     idPok=article.querySelector("#id").textContent
     let pok=await getpokymonById(idPok)
@@ -159,11 +160,42 @@ listPok.addEventListener("click",async (e)=>{
          deletePoky(idPok.trim())
          return
     }   
+    if (ajouter) {
+        try {
+            let teams=await request("GET","/teams")
+            let existe=teams.some(team=>team.creatureId===pok.id)
+            if (existe) {
+                alert(`${pok.name} est déjà dans l'équipe`);
+                return;
+            }
+
+            if (teams.length >= 6) {
+                alert("L'équipe est pleine (6 créatures maximum)");
+                return;
+            }
+
+            const entry = { creatureId: pok.id, name: pok.name, img: pok.image };
+            await AddToTeam(entry);
+            await addcartInTeam();
+             
+        } catch (err) {
+            alert("Impossible d'ajouter à l'équipe");
+            console.error(err);
+        }
+        }
     afficherDetails(pok,"bg-black")
 
 })
-
-
+await addcartInTeam()/*
+let listT=document.querySelector("#listT")
+listT.addEventListener("click",(e)=>{
+    let remove=e.target.closest("#removePok")
+    if(remove){
+        listT.classList.remove("bg-white")
+        listT.classList.add("bg-red-500")
+    }
+})
+*/
 let inputs = addPok();
 
 let form = document.querySelector("#creature-form");
