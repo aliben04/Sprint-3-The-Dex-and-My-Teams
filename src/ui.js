@@ -1,45 +1,38 @@
 import { teams } from "../script.js";
-import {  getPokymon, request, searchByName } from "./service/api.js";
+import { getPokymon, request, searchByName } from "./service/api.js";
 import { getValeus } from "./storage.js";
 
-
-
-
-
 export async function afficherPage(page) {
-    afficherLoading()
-   
-    let pageNumber=document.querySelector("#pageNumber")
-    pageNumber.textContent = `Page ${page}`;
-    try {
-        let listPok = await request("GET",`/creatures?_page=${page}&_limit=12`);
-        
-        document.querySelector("#grid").innerHTML = "";
+  afficherLoading();
 
-        if(listPok.length===0){
-            afficherEmpty();
-            return;
-        }
-        for (let poky of listPok) {
-            afficherCard(poky);
-        }
-        
+  let pageNumber = document.querySelector("#pageNumber");
+  pageNumber.textContent = `Page ${page}`;
+  try {
+    let listPok = await request("GET", `/creatures?_page=${page}&_limit=8`);
 
-    } catch (error) {
-        afficherError(page,error);
-    }finally{
-        hideLoading()
+    document.querySelector("#grid").innerHTML = "";
+
+    if (listPok.length === 0) {
+      afficherEmpty();
+      return;
     }
-    
+    for (let poky of listPok) {
+      afficherCard(poky);
+    }
+  } catch (error) {
+    afficherError(page, error);
+  } finally {
+    hideLoading();
+  }
 }
 
+export function afficherError(page, error) {
+  let error_ = document.querySelector("#loading").nextElementSibling;
+  let createError = document.createElement("div");
+  createError.className =
+    "text-center p-5 flex flex-col justify-center items-center w-full col-span-full";
 
-export function afficherError(page,error) {
-    let error_=document.querySelector("#loading").nextElementSibling
-    let createError=document.createElement("div")
-    createError.className="text-center p-5 flex flex-col justify-center items-center w-full col-span-full"
-
-    createError.innerHTML = `
+  createError.innerHTML = `
         
             <p>${error}</p>
             
@@ -48,178 +41,205 @@ export function afficherError(page,error) {
                 Réessayer
             </button>
     `;
-    error_.innerHTML=""
-    error_.append(createError)
+  error_.innerHTML = "";
+  error_.append(createError);
 
-    document.querySelector("#retry").addEventListener("click", () => {
-        afficherPage(page);
-    });
+  document.querySelector("#retry").addEventListener("click", () => {
+    afficherPage(page);
+  });
 }
 
 function afficherEmpty() {
-    document.querySelector("#grid").innerHTML = `
+  document.querySelector("#grid").innerHTML = `
         <p>Aucune créature trouvée.</p>
     `;
 }
 export function afficherLoading() {
-    document.querySelector("#grid").innerHTML =""
-    let loading=document.querySelector("#loading")
-    loading.classList.remove("hidden")
-    loading.classList.add("flex")
-    
+  document.querySelector("#grid").innerHTML = "";
+  let loading = document.querySelector("#loading");
+  loading.classList.remove("hidden");
+  loading.classList.add("flex");
 }
 
 export function hideLoading() {
-    let loading=document.querySelector("#loading")
-    loading.classList.remove("flex")
-    loading.classList.add("hidden")
-    
+  let loading = document.querySelector("#loading");
+  loading.classList.remove("flex");
+  loading.classList.add("hidden");
 }
-
 
 export function checkColor(type) {
-    let typeShape = "";
+  let typeShape = "";
 
-    switch (type.toLowerCase()) {
-        case "fire": typeShape = "bg-orange-500"; break;
-        case "water": typeShape = "bg-blue-500"; break;
-        case "grass": typeShape = "bg-green-500"; break;
-        case "electric": typeShape = "bg-yellow-400"; break;
-        case "ice": typeShape = "bg-cyan-300"; break;
-        case "fighting": typeShape = "bg-red-700"; break;
-        case "poison": typeShape = "bg-purple-500"; break;
-        case "ground": typeShape = "bg-amber-700"; break;
-        case "flying": typeShape = "bg-indigo-400"; break;
-        case "psychic": typeShape = "bg-pink-500"; break;
-        case "bug": typeShape = "bg-lime-500"; break;
-        case "rock": typeShape = "bg-stone-500"; break;
-        case "ghost": typeShape = "bg-violet-700"; break;
-        case "dragon": typeShape = "bg-indigo-700"; break;
-        case "dark": typeShape = "bg-gray-800"; break;
-        case "steel": typeShape = "bg-slate-500"; break;
-        case "fairy": typeShape = "bg-pink-300"; break;
-        case "normal": typeShape = "bg-gray-400"; break;
-        default: typeShape = "bg-gray-400";
-    }
+  switch (type.toLowerCase()) {
+    case "fire":
+      typeShape = "bg-orange-500";
+      break;
+    case "water":
+      typeShape = "bg-blue-500";
+      break;
+    case "grass":
+      typeShape = "bg-green-500";
+      break;
+    case "electric":
+      typeShape = "bg-yellow-400";
+      break;
+    case "ice":
+      typeShape = "bg-cyan-300";
+      break;
+    case "fighting":
+      typeShape = "bg-red-700";
+      break;
+    case "poison":
+      typeShape = "bg-purple-500";
+      break;
+    case "ground":
+      typeShape = "bg-amber-700";
+      break;
+    case "flying":
+      typeShape = "bg-indigo-400";
+      break;
+    case "psychic":
+      typeShape = "bg-pink-500";
+      break;
+    case "bug":
+      typeShape = "bg-lime-500";
+      break;
+    case "rock":
+      typeShape = "bg-stone-500";
+      break;
+    case "ghost":
+      typeShape = "bg-violet-700";
+      break;
+    case "dragon":
+      typeShape = "bg-indigo-700";
+      break;
+    case "dark":
+      typeShape = "bg-gray-800";
+      break;
+    case "steel":
+      typeShape = "bg-slate-500";
+      break;
+    case "fairy":
+      typeShape = "bg-pink-300";
+      break;
+    case "normal":
+      typeShape = "bg-gray-400";
+      break;
+    default:
+      typeShape = "bg-gray-400";
+  }
 
-    return typeShape;
+  return typeShape;
 }
 let types = [
-    "tous",
-    "Normal",
-    "Fire",
-    "Water",
-    "Electric",
-    "Grass",
-    "Ice",
-    "Fighting",
-    "Poison",
-    "Ground",
-    "Flying",
-    "Psychic",
-    "Bug",
-    "Rock",
-    "Ghost",
-    "Dragon",
-    "Dark",
-    "Steel",
-    "Fairy"
+  "tous",
+  "Normal",
+  "Fire",
+  "Water",
+  "Electric",
+  "Grass",
+  "Ice",
+  "Fighting",
+  "Poison",
+  "Ground",
+  "Flying",
+  "Psychic",
+  "Bug",
+  "Rock",
+  "Ghost",
+  "Dragon",
+  "Dark",
+  "Steel",
+  "Fairy",
 ];
-export async function afficherFilter(){
-       
-    let filters=document.querySelector("#filters")
-    filters.innerHTML=""
-    types.forEach((t)=>{
-        
-        let button=document.createElement("button")
-        button.textContent=t;
-        button.className="btn chip shrink-0"
-        filters.appendChild(button)
-    })
+export async function afficherFilter() {
+  let filters = document.querySelector("#filters");
+  filters.innerHTML = "";
+  types.forEach((t) => {
+    let button = document.createElement("button");
+    button.textContent = t;
+    button.className = "btn chip shrink-0";
+    filters.appendChild(button);
+  });
 }
 export async function afficherFilterCards(list) {
-    document.querySelector("#grid").innerHTML = ""
-    list.forEach((p)=>{
-        afficherCard(p)
-    })
+  document.querySelector("#grid").innerHTML = "";
+  list.forEach((p) => {
+    afficherCard(p);
+  });
 }
 
 export function showErrorSearch(error) {
+  let error_ = document.querySelector("#loading").nextElementSibling;
 
-    let error_ = document.querySelector("#loading").nextElementSibling;
+  let createError = document.createElement("div");
 
-    let createError = document.createElement("div");
+  createError.className =
+    "text-center p-5 flex flex-col justify-center items-center w-full col-span-full";
 
-    createError.className = "text-center p-5 flex flex-col justify-center items-center w-full col-span-full";
-
-    createError.innerHTML = `
+  createError.innerHTML = `
     <div class="text-center p-6 bg-red-50 rounded-xl border border-red-200">
         <p class="text-red-600 text-lg font-bold">⚠️ Oops! An error occurred</p>
         <p class="text-gray-600 text-sm mt-2">${error}</p>
     </div>
 `;
 
-    error_.innerHTML = "";
-    error_.append(createError);
-
+  error_.innerHTML = "";
+  error_.append(createError);
 }
 export async function searchName(name) {
-    if (name.trim() === "") {
-        return;
+  if (name.trim() === "") {
+    return;
+  }
+  afficherLoading();
+  try {
+    document.querySelector("#grid").innerHTML = "";
+    let pokymon = await searchByName(name);
+    if (pokymon !== null) {
+      pokymon.forEach((p) => {
+        afficherCard(p);
+      });
+    } else {
+      throw new Error(
+        "Creature not found. Please enter its full name and check the spelling",
+      );
     }
-    afficherLoading()
-    try {
-        
-        document.querySelector("#grid").innerHTML = ""
-        let pokymon=await searchByName(name)
-        if(pokymon!==null){
-            pokymon.forEach(p=>{
-                afficherCard(p)
-            })
-        }else{
-           throw new Error("Creature not found. Please enter its full name and check the spelling"); 
-        }
-    } catch (error) {
-        showErrorSearch(error.message)
-    }finally{
-        hideLoading()
-    }
-
-    
+  } catch (error) {
+    showErrorSearch(error.message);
+  } finally {
+    hideLoading();
+  }
 }
 
 export async function actualiserPokymon() {
+  let type = localStorage.getItem("typeFilter") || "tous";
+  let sortType = document.querySelector("#sort").value;
 
-    let type = localStorage.getItem("typeFilter") || "tous";
-    let sortType = document.querySelector("#sort").value;
+  try {
+    let data = await getPokymon(type, sortType);
 
-    try {
-        let data = await getPokymon(type, sortType);
+    let grid = document.querySelector("#grid");
+    grid.innerHTML = "";
 
-        let grid = document.querySelector("#grid");
-        grid.innerHTML = "";
-
-        data.forEach(pok => {
-            afficherCard(pok);
-        });
-
-    } catch (error) {
-        afficherError(1, error);
-    }
+    data.forEach((pok) => {
+      afficherCard(pok);
+    });
+  } catch (error) {
+    afficherError(1, error);
+  }
 }
-let section=document.querySelector("#grid")
+let section = document.querySelector("#grid");
 
-let detail=document.querySelector("#detail")
+let detail = document.querySelector("#detail");
 
-let idPokemonDetail = ""
+let idPokemonDetail = "";
 
 export function afficherCard(cart) {
+  let typeShape = "bg-black";
 
-    let typeShape = "bg-black";
+  let article = document.createElement("article");
 
-    let article = document.createElement("article");
-
-    article.innerHTML = `
+  article.innerHTML = `
         <article class="card flex flex-col gap-3 rounded-card border-2 bg-white p-3 pb-4 hover:translate-y-2">
 
             <div class="relative flex h-40 items-center justify-center rounded-xl bg-brand-light">
@@ -256,38 +276,33 @@ export function afficherCard(cart) {
         </article>
     `;
 
-    let btnA = article.querySelector("#ajouter");
+  let btnA = article.querySelector("#ajouter");
 
-    actualiserBoutons(cart, btnA, article);
+  actualiserBoutons(cart, btnA, article);
 
-    section.append(article);
+  section.append(article);
 }
 
-
 export function actualiserBoutons(cart, btnA, article) {
+  let existe = teams.some((team) => team.id === cart.id);
 
-    let existe = teams.some(team => team.id === cart.id);
+  let btnD = detail.querySelector("#ajouter");
 
-    let btnD = detail.querySelector("#ajouter");
+  btnA.disabled = existe || teams.length >= 6;
 
-    btnA.disabled = existe || teams.length >= 6;
+  if (existe) {
+    btnA.className = "btn-outline";
+    article.style.border = "black 1px solid";
+    article.style.borderRadius = "20px";
+  } else {
+    btnA.className = "btn-outline bg-black text-white";
+  }
 
-    if (existe) {
-        btnA.className = "btn-outline";
-        article.style.border = "black 1px solid";
-        article.style.borderRadius = "20px";
-    } else {
-        btnA.className = "btn-outline bg-black text-white";
-    }
+  if (btnD && idPokemonDetail === cart.id) {
+    btnD.disabled = existe || teams.length >= 6;
 
-    if (btnD && idPokemonDetail === cart.id) {
-
-        btnD.disabled = existe || teams.length >= 6;
-
-        btnD.className = existe
-            ? "btn-outline"
-            : "btn-outline bg-black text-white";
-    }
+    btnD.className = existe ? "btn-outline" : "btn-outline bg-black text-white";
+  }
 }
 /*
 export function ajouterTeam(cart) {
@@ -327,10 +342,9 @@ export function ajouterTeam(cart) {
 }
 */
 export function afficherDetails(cart, typeShape) {
+  idPokemonDetail = cart.id;
 
-    idPokemonDetail = cart.id;
-
-    detail.innerHTML = `
+  detail.innerHTML = `
         
             <div class="flex items-center justify-between">
                 <span class="font-mono text-sm text-muted">${cart.id}</span>
@@ -398,45 +412,42 @@ export function afficherDetails(cart, typeShape) {
             </button>
     `;
 
-    detail.querySelector("#close").addEventListener("click", function() {
+  detail.querySelector("#close").addEventListener("click", function () {
+    idPokemonDetail = null;
 
-        idPokemonDetail = null;
-
-        detail.innerHTML = `
+    detail.innerHTML = `
             <h1 class="text-center font-bold">
                 Aucun Pokémon sélectionné
             </h1>
         `;
-    });
+  });
 
-    let btnA = section.querySelector("article button#ajouter");
+  let btnA = section.querySelector("article button#ajouter");
 
-    actualiserBoutons(cart, btnA, btnA.closest("article"));
+  actualiserBoutons(cart, btnA, btnA.closest("article"));
 }
 
-export function getData(){
-    let form = document.querySelector("#creature-form");
-    let data=getValeus()
-    for(let i of form.elements){
-         if (i.name && data[i.name] !== undefined) {
-            i.value = data[i.name];
-        }
+export function getData() {
+  let form = document.querySelector("#creature-form");
+  let data = getValeus();
+  for (let i of form.elements) {
+    if (i.name && data[i.name] !== undefined) {
+      i.value = data[i.name];
     }
+  }
 }
-
-
 
 export async function addcartInTeam() {
-    let listT=document.querySelector("#listT")
-    let teamCount=document.querySelector("#team-count")
-    listT.innerHTML = "";
-    let teams=await request("GET","/teams")
-    teams.forEach((te) => {
-        let div = document.createElement("div");
-        div.className="relative border flex flex-col rounded-lg p-2"
-        div.innerHTML = `
+  let listT = document.querySelector("#listT");
+  let teamCount = document.querySelector("#team-count");
+  listT.innerHTML = "";
+  let teams = await request("GET", "/teams");
+  teams.forEach((te) => {
+    let div = document.createElement("div");
+    div.className = "relative border flex flex-col rounded-lg p-2";
+    div.innerHTML = `
             
-             <button id="removePok" ><i class="fa-solid fa-xmark text-[16px] absolute right-0 top-1 text-red-500"></i></button>
+                <button id="removePok" data-id="${te.id}"><i class="fa-solid fa-xmark text-[16px] absolute right-0 top-1 text-red-500"></i></button>
                 <img src="${te.img}" alt="${te.name}" class="py-3">
                 <h3 class="text-[16px] font-bold text-center">
                     ${te.name}
@@ -444,8 +455,8 @@ export async function addcartInTeam() {
             
         `;
 
-        listT.append(div);
-        /*
+    listT.append(div);
+    /*
         div.querySelector("#removePok").addEventListener("click",()=>{
           
           teams.splice(teams.indexOf(te),1)
@@ -453,9 +464,6 @@ export async function addcartInTeam() {
           cmp.textContent=teams.length
           addcartInTeam();
         })*/
-        
-      });
-      teamCount.innerHTML=teams.length
-    }
-
-
+  });
+  teamCount.innerHTML = teams.length;
+}

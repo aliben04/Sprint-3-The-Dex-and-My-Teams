@@ -102,7 +102,9 @@ export async function deletePokemon(id) {
 }
 
 
-
 export async function AddToTeam(pok) {
     return await request("POST","/teams",pok)
+}
+export async function removeFromTeam(id) {
+    return await request("DELETE",`/teams/${id}`)
 }
